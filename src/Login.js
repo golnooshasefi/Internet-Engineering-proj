@@ -1,14 +1,28 @@
 import { TextField } from "@mui/material";
 import React, { useState } from "react";
+import axiosInstance from "./axios";
 
 function Login(props) {
   //   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const [username, setUsername] = useState("");
 
+  const initialFormData = Object.freeze({
+    username: "",
+    password: "",
+  });
+  const [formData, updateFormData] = useState(initialFormData);
+
   const handleSumbit = (e) => {
     e.preventDefault();
-    // send `pass` and `username` to backend
+    
+    axiosInstance.post('/' , {
+      username: formData.username,
+      password: formData.password,
+    }).then((res) => {
+        console.log(res);
+        console.log(res.data);
+    });
   };
 
   return (

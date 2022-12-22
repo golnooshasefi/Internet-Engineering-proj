@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import Register from "./Register.js";
 import Login from "./Login.js";
+import axiosInstance from "./axios";
 
 function App() {
   const [currentForm, setCurrentForm] = useState("login");

@@ -41,7 +41,6 @@ function Login(props) {
               </Typography>
             </div>
             <TextField
-              margin="normal"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               type="text"
@@ -49,6 +48,7 @@ function Login(props) {
               label="Username"
               variant="outlined"
               name="username"
+              sx={{ mt: 2 }}
             />
             {/* <input
           value={username}
@@ -61,7 +61,7 @@ function Login(props) {
             <TextField
               value={pass}
               onChange={(e) => setPass(e.target.value)}
-              label="Outlined"
+              label="Password"
               variant="outlined"
               id="password"
               name="password"
@@ -77,14 +77,16 @@ function Login(props) {
           name="password"
         /> */}
             {/* <button type="submit">Login</button> */}
-            <Button
-              className="container__form__submitbtn"
-              type="submit"
-              variant="outlined"
-              sx={{ mt: 5, mb: 3 }}
-            >
-              Log In
-            </Button>
+            <div className={classes.container__form__btndiv}>
+              <Button
+                className="container__form__submitbtn"
+                type="submit"
+                variant="outlined"
+                sx={{ mt: 5, mb: 3 }}
+              >
+                Log In
+              </Button>
+            </div>
           </form>
           {/* <button onClick={() => props.onFormSwitch("register")}>
             Don't have an accout? Register here{" "}

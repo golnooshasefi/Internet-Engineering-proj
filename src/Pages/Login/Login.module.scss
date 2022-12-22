@@ -37,5 +37,10 @@
     &__Avatar {
       display: flex;
     }
+    &__btndiv {
+      display: flex;
+      //   align-items: center;
+      justify-content: center;
+    }
   }
 }

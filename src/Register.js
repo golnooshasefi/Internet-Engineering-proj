@@ -1,8 +1,7 @@
-import { TextField } from "@mui/material";
 import React, { useState } from "react";
 
-function Login(props) {
-  //   const [email, setEmail] = useState("");
+function Register(props) {
+  const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const [username, setUsername] = useState("");
 
@@ -14,6 +13,16 @@ function Login(props) {
   return (
     <>
       <form onSubmit={handleSumbit}>
+        <label htmlFor="email">email</label>
+        <input
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          type="email"
+          placeholder="youremail@example.com"
+          id="email"
+          name="email"
+        />
+
         <label htmlFor="text">username</label>
         <input
           value={username}
@@ -33,11 +42,11 @@ function Login(props) {
         />
         <button type="submit">Login</button>
       </form>
-      <button onClick={() => props.onFormSwitch("register")}>
-        Don't have an accout? Register here{" "}
+      <button onClick={() => props.onFormSwitch("login")}>
+        Already have an accout? Login here
       </button>
     </>
   );
 }
 
-export default Login;
+export default Register;

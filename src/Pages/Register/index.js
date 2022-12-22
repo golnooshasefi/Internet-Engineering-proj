@@ -1,29 +1,24 @@
 import React, { useState } from "react";
-import axiosInstance from "./axios";
+import axiosInstance from "../../axios";
 
 function Register(props) {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const [username, setUsername] = useState("");
 
-  const initialFormData = Object.freeze({
-    email: "",
-    username: "",
-    password: "",
-  });
-  const [formData, updateFormData] = useState(initialFormData);
-
   const handleSumbit = (e) => {
     e.preventDefault();
-
-    axiosInstance.post('/' , {
-      email: formData.email,
-      username: formData.username,
-      password: formData.password,
-    }).then((res) => {
+    // send `pass` and `username` to backend
+    axiosInstance
+      .post("/", {
+        email: email,
+        username: username,
+        password: pass,
+      })
+      .then((res) => {
         console.log(res);
         console.log(res.data);
-    });
+      });
   };
 
   return (

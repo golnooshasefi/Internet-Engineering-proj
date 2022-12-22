@@ -1,0 +1,41 @@
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  &__box {
+    width: 400px;
+    min-height: 575px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 19px;
+    background-color: #fff;
+    box-shadow: 0 0 3px rgba(15, 15, 15, 0.28);
+    position: relative;
+    overflow: hidden;
+    padding: 20px;
+  }
+
+  &__form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    &__avatar {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    &__submitbtn {
+      margin-top: 13px;
+    }
+
+    &__Avatar {
+      display: flex;
+    }
+  }
+}

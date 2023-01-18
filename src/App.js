@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Register from "./Pages/Register";
 import Login from "./Pages/Login";
 import Panel from "./Pages/Panel";
-import Sidebar from "./Pages/Panel/Sidebar";
+// import Sidebar from "./Pages/Panel/Sidebar";
 
 function App() {
   const [currentForm, setCurrentForm] = useState("login");
@@ -19,7 +19,7 @@ function App() {
         <Register onFormSwitch={toggleForm} />
       )} */}
       {/* <Panel /> */}
-      <Sidebar />
+      <Panel />
     </div>
   );
 }

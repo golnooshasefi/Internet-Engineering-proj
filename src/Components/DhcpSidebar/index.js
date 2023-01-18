@@ -16,7 +16,9 @@ import DnsIcon from "@mui/icons-material/Dns";
 import { AppBar, Avatar, Typography } from "@mui/material";
 import { teal } from "@mui/material/colors";
 
-import classes from "./Dhcpsidebar.module.scss";
+import classes from "../Shared/Sidebar.module.scss";
+import { Link } from "react-router-dom";
+
 const drawerWidth = 240;
 function Dhcpsidebar() {
   return (
@@ -61,21 +63,25 @@ function Dhcpsidebar() {
         <List>
           {/* {["All mail", "Trash", "Spam"].map((text, index) => ( */}
           <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                <DnsIcon />
-              </ListItemIcon>
-              Recieve your log
-            </ListItemButton>
+            <Link>
+              <ListItemButton>
+                <ListItemIcon>
+                  <DnsIcon />
+                </ListItemIcon>
+                Recieve your log
+              </ListItemButton>
+            </Link>
           </ListItem>
 
           <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                <InboxIcon />
-              </ListItemIcon>
-              DHCP Config
-            </ListItemButton>
+            <Link>
+              <ListItemButton>
+                <ListItemIcon>
+                  <InboxIcon />
+                </ListItemIcon>
+                DHCP Config
+              </ListItemButton>
+            </Link>
           </ListItem>
 
           <ListItem disablePadding>

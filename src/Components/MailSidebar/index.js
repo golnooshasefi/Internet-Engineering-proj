@@ -15,7 +15,7 @@ import DnsIcon from "@mui/icons-material/Dns";
 import { AppBar, Avatar, Typography } from "@mui/material";
 import { teal } from "@mui/material/colors";
 
-import classes from "./Mailsidebar.module.scss";
+import classes from "../Shared/Sidebar.module.scss";
 
 const drawerWidth = 240;
 function Mailsidebar() {
@@ -60,7 +60,7 @@ function Mailsidebar() {
         <Divider />
         <List>
           {/* {["All mail", "Trash", "Spam"].map((text, index) => ( */}
-          <ListItem disablePadding>
+          <ListItem>
             <ListItemButton>
               <ListItemIcon>
                 <DnsIcon />
@@ -69,7 +69,7 @@ function Mailsidebar() {
             </ListItemButton>
           </ListItem>
 
-          <ListItem disablePadding>
+          <ListItem>
             <ListItemButton>
               <ListItemIcon>
                 <MailIcon />

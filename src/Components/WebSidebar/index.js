@@ -15,7 +15,7 @@ import MailIcon from "@mui/icons-material/Mail";
 
 import classes from "../Shared/Sidebar.module.scss";
 
-const drawerWidth = 240;
+const drawerWidth = 260;
 function Websidebar() {
   return (
     <Drawer

@@ -17,7 +17,7 @@ import { teal } from "@mui/material/colors";
 
 import classes from "../Shared/Sidebar.module.scss";
 
-const drawerWidth = 240;
+const drawerWidth = 260;
 function Mailsidebar() {
   return (
     <Box sx={{ display: "flex" }}>
@@ -29,6 +29,7 @@ function Mailsidebar() {
             width: drawerWidth,
             boxSizing: "border-box",
           },
+          fontSize: "1.7rem",
         }}
         variant="permanent"
         anchor="left"
@@ -40,8 +41,6 @@ function Mailsidebar() {
         </Toolbar>
         <Divider />
         <div className={classes["seller-info"]}>
-          {/* <img src="./images/user1.png" className={classes.userImage} /> */}
-
           <div className={classes["seller-info__description"]}>
             <div className={classes.info}>
               <Avatar

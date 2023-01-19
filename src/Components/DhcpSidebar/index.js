@@ -13,13 +13,15 @@ import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import DnsIcon from "@mui/icons-material/Dns";
+import SettingsIcon from "@mui/icons-material/Settings";
+import BuildIcon from "@mui/icons-material/Build";
 import { AppBar, Avatar, Typography } from "@mui/material";
 import { teal } from "@mui/material/colors";
 
 import classes from "../Shared/Sidebar.module.scss";
 import { Link } from "react-router-dom";
 
-const drawerWidth = 240;
+const drawerWidth = 260;
 function Dhcpsidebar() {
   return (
     <Box sx={{ display: "flex" }}>
@@ -31,6 +33,7 @@ function Dhcpsidebar() {
             width: drawerWidth,
             boxSizing: "border-box",
           },
+          fontSize: "1.7rem",
         }}
         variant="permanent"
         anchor="left"
@@ -41,18 +44,16 @@ function Dhcpsidebar() {
           </Typography>
         </Toolbar>
         <Divider />
-        <div className={classes["seller-info"]}>
+        <div className={classes["user-info"]}>
           {/* <img src="./images/user1.png" className={classes.userImage} /> */}
 
-          <div className={classes["seller-info__description"]}>
+          <div className={classes["user-info__description"]}>
             <div className={classes.info}>
               <Avatar
-                sx={{ m: 1, bgcolor: teal[500] }}
+                sx={{ m: 2, bgcolor: teal[500] }}
                 className={classes.container__form_Avatar}
               ></Avatar>
-              <div className={classes["seller-info__title"]}>
-                Golnoosh Asefi
-              </div>
+              <div className={classes["user-info__title"]}>Golnoosh Asefi</div>
             </div>
           </div>
         </div>
@@ -63,31 +64,27 @@ function Dhcpsidebar() {
         <List>
           {/* {["All mail", "Trash", "Spam"].map((text, index) => ( */}
           <ListItem disablePadding>
-            <Link>
-              <ListItemButton>
-                <ListItemIcon>
-                  <DnsIcon />
-                </ListItemIcon>
-                Recieve your log
-              </ListItemButton>
-            </Link>
-          </ListItem>
-
-          <ListItem disablePadding>
-            <Link>
-              <ListItemButton>
-                <ListItemIcon>
-                  <InboxIcon />
-                </ListItemIcon>
-                DHCP Config
-              </ListItemButton>
-            </Link>
+            <ListItemButton>
+              <ListItemIcon>
+                <DnsIcon sx={{ fontSize: 20 }} />
+              </ListItemIcon>
+              Recieve your log
+            </ListItemButton>
           </ListItem>
 
           <ListItem disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                <InboxIcon />
+                <SettingsIcon sx={{ fontSize: 20 }} />
+              </ListItemIcon>
+              DHCP Config
+            </ListItemButton>
+          </ListItem>
+
+          <ListItem disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                <BuildIcon sx={{ fontSize: 20 }} />
               </ListItemIcon>
               Change Ip Range
             </ListItemButton>

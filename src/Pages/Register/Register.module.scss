@@ -44,3 +44,28 @@
     }
   }
 }
+.link:link,
+.link:visited {
+  font-size: 1.6rem;
+  white-space: nowrap;
+  color: #343a40;
+  text-decoration: none;
+  text-transform: none;
+  display: block;
+  padding: 1.5rem 3rem;
+  position: relative;
+  z-index: 10;
+  transition: all ease-out 0.5s;
+
+  display: flex;
+  align-items: center;
+  &:hover {
+    background-color: #f1f3f5;
+    color: #6667ab;
+    border-radius: 16px;
+  }
+}
+
+.link {
+  text-decoration: none;
+}

@@ -1,9 +1,16 @@
-import { TextField } from "@mui/material";
+import { Divider, TextField, Toolbar, Typography } from "@mui/material";
+import { Box } from "@mui/system";
 import classes from "./Iprange.module.scss";
 function Iprange() {
   const handleSubmit = (event) => {};
   return (
     <div className={classes.container}>
+      {/* <Toolbar>
+        <Typography variant="h4" noWrap component="div">
+          Change IP Range
+        </Typography>
+      </Toolbar> */}
+
       <span className={classes.container__header}>Change IP Range</span>
       <span>You can change your IP range here</span>
       <div className={classes.iprange}>

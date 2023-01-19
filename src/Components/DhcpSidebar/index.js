@@ -24,54 +24,56 @@ import { Link } from "react-router-dom";
 const drawerWidth = 260;
 function Dhcpsidebar() {
   return (
-    <Box sx={{ display: "flex" }}>
-      <Drawer
-        sx={{
+    // <Box sx={{ display: "flex" }}>
+    <Drawer
+      sx={{
+        width: drawerWidth,
+        flexShrink: 0,
+        "& .MuiDrawer-paper": {
           width: drawerWidth,
-          flexShrink: 0,
-          "& .MuiDrawer-paper": {
-            width: drawerWidth,
-            boxSizing: "border-box",
-          },
-          fontSize: "1.7rem",
-        }}
-        variant="permanent"
-        anchor="left"
-      >
-        <Toolbar>
-          <Typography variant="h6" noWrap component="div">
-            Permanent drawer
-          </Typography>
-        </Toolbar>
-        <Divider />
-        <div className={classes["user-info"]}>
-          {/* <img src="./images/user1.png" className={classes.userImage} /> */}
+          boxSizing: "border-box",
+        },
+        fontSize: "1.7rem",
+      }}
+      variant="permanent"
+      anchor="left"
+    >
+      <Toolbar>
+        <Typography variant="h6" noWrap component="div">
+          User panel
+        </Typography>
+      </Toolbar>
+      <Divider />
+      <div className={classes["user-info"]}>
+        {/* <img src="./images/user1.png" className={classes.userImage} /> */}
 
-          <div className={classes["user-info__description"]}>
-            <div className={classes.info}>
-              <Avatar
-                sx={{ m: 2, bgcolor: teal[500] }}
-                className={classes.container__form_Avatar}
-              ></Avatar>
-              <div className={classes["user-info__title"]}>Golnoosh Asefi</div>
-            </div>
+        <div className={classes["user-info__description"]}>
+          <div className={classes.info}>
+            <Avatar
+              sx={{ m: 2, bgcolor: teal[500] }}
+              className={classes.container__form_Avatar}
+            ></Avatar>
+            <div className={classes["user-info__title"]}>Golnoosh Asefi</div>
           </div>
         </div>
+      </div>
 
-        <Divider />
+      <Divider />
 
-        <Divider />
-        <List>
-          {/* {["All mail", "Trash", "Spam"].map((text, index) => ( */}
-          <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                <DnsIcon sx={{ fontSize: 20 }} />
-              </ListItemIcon>
-              Recieve your log
-            </ListItemButton>
-          </ListItem>
+      <Divider />
+      <List>
+        {/* {["All mail", "Trash", "Spam"].map((text, index) => ( */}
 
+        <ListItem disablePadding>
+          <ListItemButton>
+            <ListItemIcon>
+              <DnsIcon sx={{ fontSize: 20 }} />
+            </ListItemIcon>
+            Recieve your log
+          </ListItemButton>
+        </ListItem>
+
+        <Link to="dhcp-config" className={classes.link}>
           <ListItem disablePadding>
             <ListItemButton>
               <ListItemIcon>
@@ -80,7 +82,9 @@ function Dhcpsidebar() {
               DHCP Config
             </ListItemButton>
           </ListItem>
+        </Link>
 
+        <Link to="dhcp-ip" className={classes.link}>
           <ListItem disablePadding>
             <ListItemButton>
               <ListItemIcon>
@@ -89,10 +93,11 @@ function Dhcpsidebar() {
               Change Ip Range
             </ListItemButton>
           </ListItem>
-          {/* ))} */}
-        </List>
-      </Drawer>
-    </Box>
+        </Link>
+        {/* ))} */}
+      </List>
+    </Drawer>
+    // </Box>
   );
 }
 

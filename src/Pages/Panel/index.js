@@ -13,34 +13,21 @@ import Websidebar from "../../Components/WebSidebar";
 
 import classes from "./Panel.module.scss";
 import { Outlet } from "react-router-dom";
-import { Button } from "@mui/material";
-
-const drawerWidth = 240;
+import { Divider } from "@mui/material";
 
 function Panel() {
   return (
     <>
       <Box sx={{ display: "flex" }}>
-        <CssBaseline />
-        <AppBar
-          position="fixed"
-          sx={{
-            width: `calc(100% - ${drawerWidth}px)`,
-            ml: `${drawerWidth}px`,
-          }}
-        >
-          {/* <Toolbar>
-          <Typography variant="h6" noWrap component="div">
-            Permanent drawer
-          </Typography>
-        </Toolbar> */}
-        </AppBar>
-        {/* <Adminsidebar /> */}
         <Dhcpsidebar />
-        {/* <Mailsidebar /> */}
-        {/* <Websidebar /> */}
+        <Box
+          component="main"
+          sx={{ flexGrow: 1, bgcolor: "background.default", p: 3 }}
+        >
+          {/* <Divider /> */}
+          <Outlet />
+        </Box>
       </Box>
-      <Outlet />
     </>
   );
 }

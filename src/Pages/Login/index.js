@@ -5,6 +5,8 @@ import Typography from "@mui/material/Typography";
 
 import React, { useState } from "react";
 import classes from "./Login.module.scss";
+import { Link } from "react-router-dom";
+import { teal } from "@mui/material/colors";
 
 function Login(props) {
   //   const [email, setEmail] = useState("");
@@ -32,7 +34,7 @@ function Login(props) {
           <form onSubmit={handleSumbit} className={classes.container__form}>
             <div className={classes.container__form__avatar}>
               <Avatar
-                sx={{ m: 1, bgcolor: "secondary.main" }}
+                sx={{ m: 1, bgcolor: teal[500] }}
                 className={classes.container__form_Avatar}
               ></Avatar>
 
@@ -91,9 +93,14 @@ function Login(props) {
           {/* <button onClick={() => props.onFormSwitch("register")}>
             Don't have an accout? Register here{" "}
           </button> */}
-          <Button onClick={() => props.onFormSwitch("register")} variant="text">
-            Don't have an accout? Register here
-          </Button>
+          <Link to="/register" className={classes.link}>
+            <Button
+              onClick={() => props.onFormSwitch("register")}
+              variant="text"
+            >
+              Don't have an accout? Register here
+            </Button>
+          </Link>
         </div>
       </div>
     </>

@@ -6,16 +6,16 @@ import Iprange from "./Pages/Panel/IPrange";
 
 export const routes = [
   // { path: "/", element: <Homepage /> },
-  { path: "/login", element: <Login /> },
-  { path: "/register", element: <Register /> },
-
+  // { path: "/", element: <Homepage /> },
+  { path: "login", element: <Login /> },
+  { path: "register", element: <Register /> },
   {
-    path: "/dhcp-panel",
+    path: "panel",
     element: <Panel />,
     children: [
       // { path: "/dhcp-panel/log", element: <Favorites /> },
-      { path: "/dhcp-config", element: <Dhcpconfig /> },
-      { path: "/dhcpIP", element: <Iprange /> },
+      { path: "dhcp-config", element: <Dhcpconfig /> },
+      { path: "dhcp-ip", element: <Iprange /> },
     ],
   },
 ];

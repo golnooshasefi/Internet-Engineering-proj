@@ -4,10 +4,11 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
-import { purple } from "@mui/material/colors";
+import { purple, teal } from "@mui/material/colors";
 import React, { useState } from "react";
 import axiosInstance from "../../axios";
 import classes from "./Register.module.scss";
+import { Link } from "react-router-dom";
 
 function Register(props) {
   const [email, setEmail] = useState("");
@@ -36,7 +37,7 @@ function Register(props) {
           <form onSubmit={handleSumbit} className={classes.container__form}>
             <div className={classes.container__form__avatar}>
               <Avatar
-                sx={{ m: 1, bgcolor: "secondary.main" }}
+                sx={{ m: 1, bgcolor: teal[500] }}
                 className={classes.container__form_Avatar}
               ></Avatar>
 
@@ -59,7 +60,7 @@ function Register(props) {
                 mt: 2,
                 // color: purple[800],
                 "MuiInputBase-root": {
-                  color: purple[600],
+                  color: teal[600],
                 },
               }}
             />
@@ -101,7 +102,7 @@ function Register(props) {
                       sx={{
                         color: purple[800],
                         "&.Mui-checked": {
-                          color: purple[600],
+                          color: teal[500],
                         },
                       }}
                     />
@@ -113,9 +114,9 @@ function Register(props) {
                   control={
                     <Radio
                       sx={{
-                        color: purple[800],
+                        color: teal[500],
                         "&.Mui-checked": {
-                          color: purple[600],
+                          color: teal[500],
                         },
                       }}
                     />
@@ -127,9 +128,9 @@ function Register(props) {
                   control={
                     <Radio
                       sx={{
-                        color: purple[800],
+                        color: teal[500],
                         "&.Mui-checked": {
-                          color: purple[600],
+                          color: teal[500],
                         },
                       }}
                     />
@@ -149,10 +150,11 @@ function Register(props) {
               </Button>
             </div>
           </form>
-
-          <Button onClick={() => props.onFormSwitch("login")} variant="text">
-            Already have an accout? Login here
-          </Button>
+          <Link to="/register" className={classes.link}>
+            <Button onClick={() => props.onFormSwitch("login")} variant="text">
+              Already have an accout? Login here
+            </Button>
+          </Link>
         </div>
       </div>
     </>

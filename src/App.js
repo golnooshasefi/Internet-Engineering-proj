@@ -31,7 +31,7 @@ function App() {
         <Register onFormSwitch={toggleForm} />
       )} */}
       {/* <Panel /> */}
-      {/* <Iprange /> */}
+      <Iprange />
     </div>
   );
 }

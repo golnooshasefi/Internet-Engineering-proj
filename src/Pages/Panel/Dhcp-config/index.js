@@ -4,6 +4,7 @@ import { Divider } from "@mui/material";
 function Dhcpconfig() {
   return (
     <div className={classes.container}>
+      <div className={classes.container__header}>IP Range</div>
       <div className={classes.container__start}>
         <span>You can click on this button to start your DHCP Server</span>
         <button className={classes.container__button}>Start</button>

@@ -16,7 +16,7 @@ function Dhcpconfig() {
       </div>
       <div className={classes.container__status}>
         <span>
-          You can click on this button to see the Status of your dhcp servre
+          You can click on this button to see the status of your DHCP Server
         </span>
 
         <button className={classes.container__button}>Status</button>

@@ -29,14 +29,14 @@ function Mailsidebar() {
           width: drawerWidth,
           boxSizing: "border-box",
         },
-        fontSize: "1.7rem",
+        // fontSize: "1.7rem",
       }}
       variant="permanent"
       anchor="left"
     >
       <Toolbar>
         <Typography variant="h6" noWrap component="div">
-          Permanent drawer
+          USer panel
         </Typography>
       </Toolbar>
       <Divider />
@@ -44,7 +44,7 @@ function Mailsidebar() {
         <div className={classes["seller-info__description"]}>
           <div className={classes.info}>
             <Avatar
-              sx={{ m: 2, bgcolor: teal[500] }}
+              sx={{ m: 1, bgcolor: teal[500] }}
               className={classes.container__form_Avatar}
             ></Avatar>
             <div className={classes["seller-info__title"]}>Golnoosh Asefi</div>
@@ -59,7 +59,7 @@ function Mailsidebar() {
         <ListItem>
           <ListItemButton>
             <ListItemIcon>
-              <DnsIcon sx={{ fontSize: 20 }} />
+              <DnsIcon />
             </ListItemIcon>
             Recieve your log
           </ListItemButton>
@@ -69,7 +69,7 @@ function Mailsidebar() {
           <ListItem>
             <ListItemButton>
               <ListItemIcon>
-                <MailIcon sx={{ fontSize: 20 }} />
+                <MailIcon />
               </ListItemIcon>
               Mail Config
             </ListItemButton>

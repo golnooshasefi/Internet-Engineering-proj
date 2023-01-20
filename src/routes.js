@@ -3,7 +3,7 @@ import Register from "./Pages/Register";
 import Panel from "./Pages/Panel";
 import Dhcpconfig from "./Pages/Panel/Dhcp-config";
 import Iprange from "./Pages/Panel/IPrange";
-
+import Logs from "./Pages/Panel/Logs";
 import Mailconfig from "./Pages/Panel/Mailconfig";
 
 export const routes = [

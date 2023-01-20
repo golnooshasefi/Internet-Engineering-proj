@@ -5,7 +5,7 @@ import Dhcpsidebar from "../../Components/DhcpSidebar";
 import Mailsidebar from "../../Components/MailSidebar";
 import Websidebar from "../../Components/WebSidebar";
 
-import UserContext, { UserContextProvider } from "../../store/UserContext";
+// import UserContext, { UserContextProvider } from "../../store/UserContext";
 
 import { Outlet } from "react-router-dom";
 import { useContext } from "react";
@@ -15,7 +15,7 @@ function Panel() {
   return (
     <>
       <Box sx={{ display: "flex" }}>
-        <Dhcpsidebar />
+        <Mailsidebar />
         <Box
           component="main"
           sx={{ flexGrow: 1, bgcolor: "background.default", p: 3 }}

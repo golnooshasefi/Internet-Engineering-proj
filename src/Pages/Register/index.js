@@ -14,16 +14,16 @@ import classes from "./Register.module.scss";
 import UserContext from "../../store/UserContext";
 
 function Register(props) {
-  const [email, setEmail] = useState("");
-  const [pass, setPass] = useState("");
-  const [username, setUsername] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [pass, setPass] = useState("");
+  // const [username, setUsername] = useState("");
   const navigate = useNavigate();
-  const initialFormData = Object.freeze({
-    fullName: "",
+  const initialFormData = {
+    username: "",
     email: "",
-    trpe: "",
+    type: "",
     password: "",
-  });
+  };
   const [formData, updateFormData] = useState(initialFormData);
 
   const { login } = useContext(UserContext);
@@ -78,7 +78,7 @@ function Register(props) {
             </div>
             {/* <label htmlFor="email">email</label> */}
             <TextField
-              value={email}
+              value={formData.email}
               onChange={handleChange}
               type="email"
               label="Email"
@@ -98,7 +98,7 @@ function Register(props) {
 
             {/* <label htmlFor="text">username</label> */}
             <TextField
-              value={username}
+              value={formData.username}
               onChange={handleChange}
               type="text"
               id="username"
@@ -110,7 +110,7 @@ function Register(props) {
             {/* <label htmlFor="password">password</label> */}
             <TextField
               type="password"
-              value={pass}
+              value={formData.password}
               onChange={handleChange}
               id="password"
               name="password"
@@ -128,7 +128,8 @@ function Register(props) {
                 onChange={handleChange}
               >
                 <FormControlLabel
-                  value="DHCP"
+                  value={formData.type}
+                  name="type"
                   control={
                     <Radio
                       sx={{
@@ -142,7 +143,8 @@ function Register(props) {
                   label="DHCP"
                 />
                 <FormControlLabel
-                  value="mailserver"
+                  value={formData.type}
+                  name="type"
                   control={
                     <Radio
                       sx={{
@@ -156,7 +158,8 @@ function Register(props) {
                   label="Mail Server"
                 />
                 <FormControlLabel
-                  value="webserver"
+                  value={formData.type}
+                  name="type"
                   control={
                     <Radio
                       sx={{

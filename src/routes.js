@@ -6,9 +6,6 @@ import Iprange from "./Pages/Panel/IPrange";
 
 import Mailconfig from "./Pages/Panel/Mailconfig";
 
-import Webconfig from "./Pages/Panel/Web-config";
-
-
 export const routes = [
   // { path: "/", element: <Homepage /> },
   { path: "login", element: <Login /> },
@@ -22,9 +19,7 @@ export const routes = [
       { path: "dhcp-ip", element: <Iprange /> },
 
       { path: "mail-config", element: <Mailconfig /> },
-
-      { path: "web-config", element: <Webconfig /> },
-
     ],
   },
+  { path: "logs", element: <Logs /> },
 ];

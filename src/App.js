@@ -9,12 +9,6 @@ import { routes } from "./routes";
 import { Route, Routes } from "react-router-dom";
 
 function App() {
-  const [currentForm, setCurrentForm] = useState("login");
-
-  const toggleForm = (formName) => {
-    setCurrentForm(formName);
-  };
-
   return (
     // <Routes>
     //   {routes.map((route) => (

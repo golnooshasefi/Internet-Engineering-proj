@@ -5,28 +5,59 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import { purple, teal } from "@mui/material/colors";
-import React, { useState } from "react";
+
+import React, { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+
 import axiosInstance from "../../axios";
 import classes from "./Register.module.scss";
-import { Link } from "react-router-dom";
+import UserContext from "../../store/UserContext";
 
 function Register(props) {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const [username, setUsername] = useState("");
+  const navigate = useNavigate();
+  const initialFormData = Object.freeze({
+    fullName: "",
+    email: "",
+    trpe: "",
+    password: "",
+  });
+  const [formData, updateFormData] = useState(initialFormData);
+
+  const { login } = useContext(UserContext);
+
+  const handleChange = (e) => {
+    updateFormData({
+      ...formData,
+      // Trimming any whitespace
+      [e.target.name]: e.target.value.trim(),
+    });
+  };
 
   const handleSumbit = (e) => {
     e.preventDefault();
-    // send `pass` and `username` to backend
     axiosInstance
-      .post("/", {
-        email: email,
-        username: username,
-        password: pass,
+      .post(`accounts/register/`, {
+        username: formData.fullName,
+        email: formData.email,
+        type: formData.phoneNumber,
+        password: formData.password,
       })
       .then((res) => {
-        console.log(res);
-        console.log(res.data);
+        if (res.status === 200) {
+          login(res.data.type, res.data.username);
+          localStorage.setItem("access_token", res.data.access);
+          localStorage.setItem("refresh_token", res.data.refresh);
+          axiosInstance.defaults.headers["Authorization"] =
+            "Bearer " + localStorage.getItem("access_token");
+          navigate(-1);
+          // // history.push("/login");
+          // // console.log("axios");
+          // console.log(res);
+          // console.log(res.data);
+        }
       });
   };
 
@@ -48,7 +79,7 @@ function Register(props) {
             {/* <label htmlFor="email">email</label> */}
             <TextField
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={handleChange}
               type="email"
               label="Email"
               id="email"
@@ -68,7 +99,7 @@ function Register(props) {
             {/* <label htmlFor="text">username</label> */}
             <TextField
               value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              onChange={handleChange}
               type="text"
               id="username"
               label="Username"
@@ -80,7 +111,7 @@ function Register(props) {
             <TextField
               type="password"
               value={pass}
-              onChange={(e) => setPass(e.target.value)}
+              onChange={handleChange}
               id="password"
               name="password"
               variant="outlined"
@@ -94,6 +125,7 @@ function Register(props) {
                 aria-labelledby="user-type"
                 defaultValue="DHCP"
                 name="radio-buttons-group"
+                onChange={handleChange}
               >
                 <FormControlLabel
                   value="DHCP"

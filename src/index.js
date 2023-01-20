@@ -8,13 +8,16 @@ import "@fontsource/roboto/700.css";
 import CssBaseline from "@mui/material/CssBaseline";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { routes } from "./routes";
-
+// import UserContext from "../../store/UserContext";
+import { UserContextProvider } from "./store/UserContext";
 const router = createBrowserRouter(routes);
 
 ReactDOM.render(
   <React.StrictMode>
     <CssBaseline />
-    <RouterProvider router={router} />
+    <UserContextProvider>
+      <RouterProvider router={router} />
+    </UserContextProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

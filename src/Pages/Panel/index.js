@@ -1,35 +1,75 @@
 import Box from "@mui/material/Box";
-import CssBaseline from "@mui/material/CssBaseline";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import { common } from "@mui/material/colors";
-import { teal } from "@mui/material/colors";
-// import DeleteIcon from "@mui/icons-material";
+
 import Adminsidebar from "../../Components/AdminSidebar";
 import Dhcpsidebar from "../../Components/DhcpSidebar";
 import Mailsidebar from "../../Components/MailSidebar";
 import Websidebar from "../../Components/WebSidebar";
 
-import classes from "./Panel.module.scss";
+import UserContext from "../../store/UserContext";
+
 import { Outlet } from "react-router-dom";
-import { Divider } from "@mui/material";
+import { useContext } from "react";
 
 function Panel() {
-  return (
-    <>
-      <Box sx={{ display: "flex" }}>
-        <Dhcpsidebar />
-        <Box
-          component="main"
-          sx={{ flexGrow: 1, bgcolor: "background.default", p: 3 }}
-        >
-          {/* <Divider /> */}
-          <Outlet />
+  let { user } = useContext(UserContext);
+
+  if (user.type === "mail") {
+    return (
+      <>
+        <Box sx={{ display: "flex" }}>
+          <Mailsidebar />
+          <Box
+            component="main"
+            sx={{ flexGrow: 1, bgcolor: "background.default", p: 3 }}
+          >
+            <Outlet />
+          </Box>
         </Box>
-      </Box>
-    </>
-  );
+      </>
+    );
+  } else if (user.type === "dhcp") {
+    return (
+      <>
+        <Box sx={{ display: "flex" }}>
+          <Dhcpsidebar />
+          <Box
+            component="main"
+            sx={{ flexGrow: 1, bgcolor: "background.default", p: 3 }}
+          >
+            <Outlet />
+          </Box>
+        </Box>
+      </>
+    );
+  } else if (user.type === "web") {
+    return (
+      <>
+        <Box sx={{ display: "flex" }}>
+          <Websidebar />
+          <Box
+            component="main"
+            sx={{ flexGrow: 1, bgcolor: "background.default", p: 3 }}
+          >
+            <Outlet />
+          </Box>
+        </Box>
+      </>
+    );
+  } else if (user.type === "admin") {
+    return (
+      <>
+        <Box sx={{ display: "flex" }}>
+          <Adminsidebar />
+          <Box
+            component="main"
+            sx={{ flexGrow: 1, bgcolor: "background.default", p: 3 }}
+          >
+            <Outlet />
+          </Box>
+        </Box>
+      </>
+    );
+  }
 }
 
 export default Panel;

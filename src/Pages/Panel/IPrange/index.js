@@ -1,16 +1,33 @@
 import { Divider, TextField, Toolbar, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import classes from "./Iprange.module.scss";
+
+import axiosInstance from "../../../axios";
+import { useState } from "react";
 function Iprange() {
-  const handleSubmit = (event) => {};
+  const [startip, setStartip] = useState("");
+  const [endip, setEndip] = useState("");
+  const [formData, updateFormData] = useState(initialFormData);
+
+  const handleChange = (e) => {
+    updateFormData({
+      ...formData,
+      [e.target.name]: e.target.value.trim(),
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axiosInstance
+      .post("", {
+        startip: startip,
+        endip: endip,
+      })
+      .then();
+  };
+
   return (
     <div className={classes.container}>
-      {/* <Toolbar>
-        <Typography variant="h4" noWrap component="div">
-          Change IP Range
-        </Typography>
-      </Toolbar> */}
-
       <span className={classes.container__header}>Change IP Range</span>
       <span>You can change your IP range here</span>
       <div className={classes.iprange}>
@@ -27,6 +44,8 @@ function Iprange() {
                 }}
                 id="outlined-basic"
                 variant="outlined"
+                onChange={handleChange}
+                type="text"
               />
             </span>
             <span>

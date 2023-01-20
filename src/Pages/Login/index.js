@@ -1,11 +1,15 @@
 import axiosInstance from "../../axios";
+import UserContext from "../../store/UserContext";
+
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 import { Button, TextField } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import classes from "./Login.module.scss";
-import { Link } from "react-router-dom";
 import { teal } from "@mui/material/colors";
 
 function Login(props) {
@@ -13,17 +17,39 @@ function Login(props) {
   const [pass, setPass] = useState("");
   const [username, setUsername] = useState("");
 
+  const { login } = useContext(UserContext);
+  const navigate = useNavigate();
+
+  const initialFormData = Object.freeze({
+    email: "",
+    password: "",
+  });
+
+  const [formData, updateFormData] = useState(initialFormData);
+
+  const handleChange = (e) => {
+    updateFormData({
+      ...formData,
+      [e.target.name]: e.target.value.trim(),
+    });
+  };
   const handleSumbit = (e) => {
     e.preventDefault();
     // send `pass` and `username` to backend
     axiosInstance
-      .post("/", {
-        username,
-        password: pass,
+      .post(`accounts/api/token`, {
+        username: formData.username,
+        password: formData.password,
       })
       .then((res) => {
-        console.log(res);
-        console.log(res.data);
+        if (res.status === 200) {
+          login(res.data.type, res.data.username);
+          localStorage.setItem("access_token", res.data.access);
+          localStorage.setItem("refresh_token", res.data.refresh);
+          axiosInstance.defaults.headers["Authorization"] =
+            "Bearer " + localStorage.getItem("access_token");
+          navigate(-1);
+        }
       });
   };
 
@@ -44,7 +70,7 @@ function Login(props) {
             </div>
             <TextField
               value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              onChange={handleChange}
               type="text"
               id="username"
               label="Username"
@@ -52,17 +78,10 @@ function Login(props) {
               name="username"
               sx={{ mt: 2 }}
             />
-            {/* <input
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          type="text"
-          id="username"
-          name="username"
-        /> */}
 
             <TextField
               value={pass}
-              onChange={(e) => setPass(e.target.value)}
+              onChange={handleChange}
               label="Password"
               variant="outlined"
               id="password"
@@ -70,15 +89,6 @@ function Login(props) {
               sx={{ mt: 2, mb: 1 }}
             />
 
-            {/* <input
-          type="password"
-          value={pass}
-          onChange={(e) => setPass(e.target.value)}
-          placeholder="*******"
-          id="password"
-          name="password"
-        /> */}
-            {/* <button type="submit">Login</button> */}
             <div className={classes.container__form__btndiv}>
               <Button
                 className="container__form__submitbtn"
@@ -90,9 +100,7 @@ function Login(props) {
               </Button>
             </div>
           </form>
-          {/* <button onClick={() => props.onFormSwitch("register")}>
-            Don't have an accout? Register here{" "}
-          </button> */}
+
           <Link to="/register" className={classes.link}>
             <Button
               onClick={() => props.onFormSwitch("register")}

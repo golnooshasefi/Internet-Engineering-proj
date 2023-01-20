@@ -12,20 +12,23 @@ import React, { useState, useContext } from "react";
 import classes from "./Login.module.scss";
 import { teal } from "@mui/material/colors";
 
+// const initialFormData = {
+//   email: "",
+//   password: "",
+// };
+
 function Login(props) {
   //   const [email, setEmail] = useState("");
-  const [pass, setPass] = useState("");
-  const [username, setUsername] = useState("");
+  // const [pass, setPass] = useState("");
+  // const [username, setUsername] = useState("");
 
-  const { login } = useContext(UserContext);
-  const navigate = useNavigate();
+  // const { login } = useContext(UserContext);
+  // const navigate = useNavigate();
 
-  const initialFormData = Object.freeze({
+  const [formData, updateFormData] = useState({
     email: "",
     password: "",
   });
-
-  const [formData, updateFormData] = useState(initialFormData);
 
   const handleChange = (e) => {
     updateFormData({
@@ -33,24 +36,25 @@ function Login(props) {
       [e.target.name]: e.target.value.trim(),
     });
   };
+
   const handleSumbit = (e) => {
     e.preventDefault();
     // send `pass` and `username` to backend
-    axiosInstance
-      .post(`accounts/api/token`, {
-        username: formData.username,
-        password: formData.password,
-      })
-      .then((res) => {
-        if (res.status === 200) {
-          login(res.data.type, res.data.username);
-          localStorage.setItem("access_token", res.data.access);
-          localStorage.setItem("refresh_token", res.data.refresh);
-          axiosInstance.defaults.headers["Authorization"] =
-            "Bearer " + localStorage.getItem("access_token");
-          navigate(-1);
-        }
-      });
+    // axiosInstance
+    //   .post(`accounts/api/token`, {
+    //     username: formData.username,
+    //     password: formData.password,
+    //   })
+    //   .then((res) => {
+    //     if (res.status === 200) {
+    //       login(res.data.type, res.data.username);
+    //       localStorage.setItem("access_token", res.data.access);
+    //       localStorage.setItem("refresh_token", res.data.refresh);
+    //       axiosInstance.defaults.headers["Authorization"] =
+    //         "Bearer " + localStorage.getItem("access_token");
+    //       navigate(-1);
+    //     }
+    //   });
   };
 
   return (
@@ -69,18 +73,19 @@ function Login(props) {
               </Typography>
             </div>
             <TextField
-              value={username}
+              value={formData.username}
               onChange={handleChange}
               type="text"
               id="username"
               label="Username"
               variant="outlined"
               name="username"
-              sx={{ mt: 2 }}
+              sx={{ mt: 2}}
+              // sx={{ fontSize: 18 }}
             />
 
             <TextField
-              value={pass}
+              value={formData.password}
               onChange={handleChange}
               label="Password"
               variant="outlined"

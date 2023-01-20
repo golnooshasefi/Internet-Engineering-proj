@@ -5,9 +5,13 @@ import classes from "./Iprange.module.scss";
 import axiosInstance from "../../../axios";
 import { useState } from "react";
 function Iprange() {
-  const [startip, setStartip] = useState("");
-  const [endip, setEndip] = useState("");
-  const [formData, updateFormData] = useState(initialFormData);
+  // const [startip, setStartip] = useState("");
+  // const [endip, setEndip] = useState("");
+  const [success, setSuccess] = useState(false);
+  const [formData, updateFormData] = useState({
+    startip: "",
+    endip: "",
+  });
 
   const handleChange = (e) => {
     updateFormData({
@@ -17,13 +21,16 @@ function Iprange() {
   };
 
   const handleSubmit = (e) => {
+    setSuccess(false);
     e.preventDefault();
     axiosInstance
       .post("", {
-        startip: startip,
-        endip: endip,
+        startip: formData.startip,
+        endip: formData.endip,
       })
-      .then();
+      .then(() => {
+        setSuccess(true);
+      });
   };
 
   return (
@@ -42,6 +49,8 @@ function Iprange() {
                     height: 40,
                   },
                 }}
+                value={formData.startip}
+                name="startip"
                 id="outlined-basic"
                 variant="outlined"
                 onChange={handleChange}
@@ -57,8 +66,12 @@ function Iprange() {
                     height: 40,
                   },
                 }}
+                value={formData.endip}
+                name="endip"
                 id="outlined-basic"
                 variant="outlined"
+                onChange={handleChange}
+                type="text"
               />
             </span>
           </div>

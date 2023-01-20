@@ -15,9 +15,9 @@ const router = createBrowserRouter(routes);
 ReactDOM.render(
   <React.StrictMode>
     <CssBaseline />
-    <UserContextProvider>
-      <RouterProvider router={router} />
-    </UserContextProvider>
+    {/* <UserContextProvider> */}
+    <RouterProvider router={router} />
+    {/* </UserContextProvider> */}
   </React.StrictMode>,
   document.getElementById("root")
 );

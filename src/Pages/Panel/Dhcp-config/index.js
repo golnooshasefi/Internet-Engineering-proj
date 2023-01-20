@@ -1,10 +1,12 @@
 import classes from "./Dhcpconfig.module.scss";
-import { Divider } from "@mui/material";
+import { Divider, Typography } from "@mui/material";
 
 function Dhcpconfig() {
   return (
     <div className={classes.container}>
-      <div className={classes.container__header}>IP Range</div>
+      <Typography variant="h6" noWrap component="div">
+        DHCP Config
+      </Typography>
       <div className={classes.container__start}>
         <span>You can click on this button to start your DHCP Server</span>
         <button className={classes.container__button}>Start</button>

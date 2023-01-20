@@ -1,24 +1,16 @@
 import classes from "./Dhcpconfig.module.scss";
 import { Divider, Typography } from "@mui/material";
 import axiosInstance from "../../../axios";
+import { useState } from "react";
 
 function Dhcpconfig() {
+  const [status, setStatus] = useState([]);
   const getStatus = () => {
-    var statusArray;
     axiosInstance.get(`panel/status`).then((res) => {
       if (res.status === 200) {
-        statusArray = JSON.parse(res);
+        setStatus(res);
       }
     });
-    return (
-      <>
-        <div>
-          {statusArray.map((item) => {
-            return <p>{item.status}</p>;
-          })}
-        </div>
-      </>
-    );
   };
   return (
     <div className={classes.container}>
@@ -42,6 +34,11 @@ function Dhcpconfig() {
         <button className={classes.container__button} onClick={getStatus}>
           Status
         </button>
+        <div>
+          {status.map((item) => {
+            return <p>{item.status}</p>;
+          })}
+        </div>
       </div>
     </div>
   );

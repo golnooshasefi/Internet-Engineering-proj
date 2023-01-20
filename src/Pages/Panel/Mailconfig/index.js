@@ -12,24 +12,18 @@ function Mailconfig() {
 
   const handlestart = (e) => {
     e.preventDefault();
-    // axiosInstance
-    // .post(`accounts/register/`, {
-    //   // username: formData.fullName,
-    //   // email: formData.email,
-    //   // password: formData.password,
-    // })
-    // .then((res) => {
-    //   if (res.status === 200) {
-    //     login(res.data.type, res.data.username);
-    //     localStorage.setItem("access_token", res.data.access);
-    //     localStorage.setItem("refresh_token", res.data.refresh);
-    //     axiosInstance.defaults.headers["Authorization"] =
-    //       "Bearer " + localStorage.getItem("access_token");
-    //     navigate(-1);
-    //     console.log(res);
-    //     console.log(res.data);
-    //   }
-    // });
+    axiosInstance.post(`accounts/register/`, {}).then((res) => {
+      if (res.status === 200) {
+        login(res.data.type, res.data.username);
+        localStorage.setItem("access_token", res.data.access);
+        localStorage.setItem("refresh_token", res.data.refresh);
+        axiosInstance.defaults.headers["Authorization"] =
+          "Bearer " + localStorage.getItem("access_token");
+        navigate(-1);
+        console.log(res);
+        console.log(res.data);
+      }
+    });
   };
 
   const handlestatus = (e) => {};

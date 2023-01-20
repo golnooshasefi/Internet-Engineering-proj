@@ -15,7 +15,7 @@ function Panel() {
   return (
     <>
       <Box sx={{ display: "flex" }}>
-        <Mailsidebar />
+        <Dhcpsidebar />
         <Box
           component="main"
           sx={{ flexGrow: 1, bgcolor: "background.default", p: 3 }}

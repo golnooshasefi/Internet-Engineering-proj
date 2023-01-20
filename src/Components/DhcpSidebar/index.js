@@ -61,15 +61,16 @@ function Dhcpsidebar() {
       <Divider />
       <List>
         {/* {["All mail", "Trash", "Spam"].map((text, index) => ( */}
-
-        <ListItem disablePadding>
-          <ListItemButton>
-            <ListItemIcon>
-              <DnsIcon />
-            </ListItemIcon>
-            Recieve your log
-          </ListItemButton>
-        </ListItem>
+        <Link to="logs" className={classes.link}>
+          <ListItem disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                <DnsIcon />
+              </ListItemIcon>
+              Recieve your log
+            </ListItemButton>
+          </ListItem>
+        </Link>
 
         <Link to="dhcp-config" className={classes.link}>
           <ListItem disablePadding>

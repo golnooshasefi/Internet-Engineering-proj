@@ -1,0 +1,10 @@
+.container {
+  height: 30%;
+  overflow: auto;
+  margin-top: 2rem;
+  background-color: #8888;
+  &__codeBox {
+    height: 3rem;
+    overflow: hidden;
+  }
+}

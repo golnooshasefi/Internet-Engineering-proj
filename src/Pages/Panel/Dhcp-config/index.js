@@ -1,7 +1,26 @@
 import classes from "./Dhcpconfig.module.scss";
 import { Divider } from "@mui/material";
+import axiosInstance from "../../../axios";
 
 function Dhcpconfig() {
+  const getStatus = () => {
+    var statusArray;
+    axiosInstance
+      .get(`panel/status`).then((res) => {
+        if (res.status === 200) {
+          statusArray = JSON.parse(res);
+        }
+      });
+      return(
+        <>
+            <div>
+              {statusArray.map(item => {
+                  return <p>{item.status}</p>;
+              })}
+            </div>
+        </>
+      );
+  }
   return (
     <div className={classes.container}>
       <div className={classes.container__header}>IP Range</div>
@@ -19,7 +38,7 @@ function Dhcpconfig() {
           You can click on this button to see the status of your DHCP Server
         </span>
 
-        <button className={classes.container__button}>Status</button>
+        <button className={classes.container__button} onClick={getStatus}>Status</button>
       </div>
     </div>
   );

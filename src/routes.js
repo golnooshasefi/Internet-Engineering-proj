@@ -3,10 +3,11 @@ import Register from "./Pages/Register";
 import Panel from "./Pages/Panel";
 import Dhcpconfig from "./Pages/Panel/Dhcp-config";
 import Iprange from "./Pages/Panel/IPrange";
+import HeroSection from "./Pages/HeroSection"
 
 export const routes = [
   // { path: "/", element: <Homepage /> },
-  // { path: "/", element: <Homepage /> },
+  { path: "/", element: <HeroSection /> },
   { path: "login", element: <Login /> },
   { path: "register", element: <Register /> },
   {

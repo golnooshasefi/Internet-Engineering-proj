@@ -37,7 +37,7 @@ function Dhcpsidebar() {
       variant="permanent"
       anchor="left"
     >
-      <Toolbar>
+      <Toolbar className={classes.tool}>
         <Typography variant="h6" noWrap component="div">
           User panel
         </Typography>

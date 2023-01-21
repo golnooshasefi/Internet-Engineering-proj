@@ -1,10 +1,40 @@
 .container {
-  height: 30%;
+  height: 50%;
+  width: 95%;
   overflow: auto;
-  margin-top: 2rem;
-  background-color: #8888;
+  margin-top: 1rem;
+  background-color: #ebecf0;
+  padding: 0.8rem;
+  border-radius: 1rem;
+
   &__codeBox {
     height: 3rem;
+    padding-bottom: 1rem;
     overflow: hidden;
   }
+}
+
+.log {
+  padding-bottom: 1rem;
+}
+
+.btnContainer {
+  width: 95%;
+  display: flex;
+  justify-content: end;
+  &__btn {
+    padding: 1rem 1.5rem;
+    border-radius: 1rem;
+    font-size: 1.1rem;
+    margin-top: 2rem;
+    background-color: #7fe9de;
+    border-style: none;
+    &:hover {
+      background-color: #a3d8f4;
+    }
+  }
+}
+
+.header {
+  margin-bottom: 1rem;
 }

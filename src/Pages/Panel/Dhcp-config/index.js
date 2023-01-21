@@ -1,25 +1,18 @@
 import classes from "./Dhcpconfig.module.scss";
 import { Divider } from "@mui/material";
 import axiosInstance from "../../../axios";
+import { useState } from "react";
 
 function Dhcpconfig() {
-  const getStatus = () => {
-    var statusArray;
+  const [dhcpStatus, setDhcpStatus] = useState([]);
+
+  const getDhcpStatus = () => {
     axiosInstance
-      .get(`panel/status`).then((res) => {
+      .get(`panel/dhcp/status`).then((res) => {
         if (res.status === 200) {
-          statusArray = JSON.parse(res);
+          setDhcpStatus(res.status);
         }
       });
-      return(
-        <>
-            <div>
-              {statusArray.map(item => {
-                  return <p>{item.status}</p>;
-              })}
-            </div>
-        </>
-      );
   }
   return (
     <div className={classes.container}>
@@ -38,7 +31,9 @@ function Dhcpconfig() {
           You can click on this button to see the status of your DHCP Server
         </span>
 
-        <button className={classes.container__button} onClick={getStatus}>Status</button>
+        <button className={classes.container__button} onClick={getDhcpStatus={}}>Status</button>
+        <br></br>
+        <p>{dhcpStatus}</p>
       </div>
     </div>
   );

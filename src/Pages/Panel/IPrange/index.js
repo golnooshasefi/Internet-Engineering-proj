@@ -37,7 +37,7 @@ function Iprange() {
     <div className={classes.container}>
       <div className={classes.container__header}>
         <Typography variant="h4" noWrap component="div">
-          DHCP Config
+          IP Range
         </Typography>
       </div>
 

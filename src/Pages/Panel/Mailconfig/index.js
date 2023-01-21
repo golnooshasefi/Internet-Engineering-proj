@@ -14,6 +14,9 @@ function Mailconfig() {
 
   const [stopSuccessMeassage, setStopSuccessMessage] = useState("");
   const [stopFailureMessage, setStopFailureMessage] = useState("");
+
+  const [status, setStatus] = useState([]);
+
   const handlestop = (e) => {
     e.preventDefault();
     axiosInstance.post(``).then((res) => {
@@ -36,7 +39,13 @@ function Mailconfig() {
     });
   };
 
-  const handlestatus = (e) => {};
+  const getStatus = () => {
+    axiosInstance.get(`panel/status`).then((res) => {
+      if (res.status === 200) {
+        setStatus(res);
+      }
+    });
+  };
 
   return (
     <div className={classes.container}>
@@ -67,9 +76,14 @@ function Mailconfig() {
         <span>
           You can click on this button to see the Status of your Mail servre
         </span>
-        <button className={classes.container__button} onClick={handlestop}>
+        <button className={classes.container__button} onClick={getStatus}>
           Status
         </button>
+        <div>
+          {status.map((item) => {
+            return <p>{item.status}</p>;
+          })}
+        </div>
       </div>
     </div>
   );

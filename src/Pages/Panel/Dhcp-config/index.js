@@ -42,7 +42,7 @@ function Dhcpconfig() {
   };
   return (
     <div className={classes.container}>
-      <Typography variant="h6" noWrap component="div">
+      <Typography variant="h4" noWrap component="div">
         DHCP Config
       </Typography>
       <div className={classes.container__start}>

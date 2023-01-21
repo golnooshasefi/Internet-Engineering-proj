@@ -3,6 +3,8 @@ import Register from "./Pages/Register";
 import Panel from "./Pages/Panel";
 import Dhcpconfig from "./Pages/Panel/Dhcp-config";
 import Iprange from "./Pages/Panel/IPrange";
+
+import HeroSection from "./Pages/HeroSection"
 import Logs from "./Pages/Panel/Logs";
 import Mailconfig from "./Pages/Panel/Mailconfig";
 import Webconfig from "./Pages/Panel/Web-config";
@@ -12,6 +14,8 @@ import Webchangedir from "./Pages/Panel/web-change-dir";
 
 export const routes = [
   // { path: "/", element: <Homepage /> },
+  { path: "/", element: <HeroSection /> },
+
   { path: "login", element: <Login /> },
   { path: "register", element: <Register /> },
   {

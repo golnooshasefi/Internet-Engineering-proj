@@ -1,29 +1,38 @@
 import axiosInstance from "../../../axios";
 import classes from "./Mailconfig.module.scss";
 import UserContext from "../../../store/UserContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Mailconfig() {
   // const { login } = useContext(UserContext);
   const navigate = useNavigate();
 
-  const handlestop = (e) => {};
+  const [startSuccessMeassage, setStartSuccessMessage] = useState("");
+  const [startFailureMessage, setStartFailureMessage] = useState("");
+
+  const [stopSuccessMeassage, setStopSuccessMessage] = useState("");
+  const [stopFailureMessage, setStopFailureMessage] = useState("");
+  const handlestop = (e) => {
+    e.preventDefault();
+    axiosInstance.post(``).then((res) => {
+      if (res.status === 200) {
+        setStopSuccessMessage("succesful");
+      } else {
+        setStopFailureMessage("error");
+      }
+    });
+  };
 
   const handlestart = (e) => {
     e.preventDefault();
-    // axiosInstance.post(`accounts/register/`, {}).then((res) => {
-    //   if (res.status === 200) {
-    //     login(res.data.type, res.data.username);
-    //     localStorage.setItem("access_token", res.data.access);
-    //     localStorage.setItem("refresh_token", res.data.refresh);
-    //     axiosInstance.defaults.headers["Authorization"] =
-    //       "Bearer " + localStorage.getItem("access_token");
-    //     navigate(-1);
-    //     console.log(res);
-    //     console.log(res.data);
-    //   }
-    // });
+    axiosInstance.post(``).then((res) => {
+      if (res.status === 200) {
+        setStartSuccessMessage("succesful");
+      } else {
+        setStartFailureMessage("error");
+      }
+    });
   };
 
   const handlestatus = (e) => {};
@@ -37,6 +46,10 @@ function Mailconfig() {
         <button className={classes.container__button} onClick={handlestart}>
           Start
         </button>
+        {startSuccessMeassage && (
+          <div> Your Mail Server started succesfully!</div>
+        )}
+        {startFailureMessage && <div>An Error Occured!</div>}
       </div>
 
       <div className={classes.container__stop}>
@@ -44,6 +57,8 @@ function Mailconfig() {
         <button className={classes.container__button} onClick={handlestop}>
           Stop
         </button>
+        {stopSuccessMeassage && <div> Your Mail Server Stoped</div>}
+        {stopFailureMessage && <div>An Error Occured!</div>}
       </div>
 
       <div className={classes.container__status}>

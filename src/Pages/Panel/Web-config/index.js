@@ -51,16 +51,16 @@ function Webconfig() {
           Start
         </button>
         {startSuccessMeassage && (
-          <div> Your Mail Server started succesfully!</div>
+          <div> Your Web Server started succesfully!</div>
         )}
         {startFailureMessage && <div>An Error Occured!</div>}
       </div>
       <div className={classes.container__stop}>
-        <span>You can click on this button to stop your DHCP Server</span>
+        <span>You can click on this button to stop your Web Server</span>
         <button className={classes.container__button} onClick={handleStop}>
           Stop
         </button>
-        {stopSuccessMeassage && <div> Your Mail Server Stoped</div>}
+        {stopSuccessMeassage && <div> Your Web Server Stoped</div>}
         {stopFailureMessage && <div>An Error Occured!</div>}
       </div>
       <div className={classes.container__status}>

@@ -1,9 +1,12 @@
 import classes from "./Webconfig.module.scss";
-import { Divider } from "@mui/material";
+import { Divider, Typography } from "@mui/material";
 
 function Webconfig() {
   return (
     <div className={classes.container}>
+      <Typography variant="h6" noWrap component="div">
+        Web Config
+      </Typography>
       <div className={classes.container__start}>
         <span>You can click on this button to start your Web Server</span>
         <button className={classes.container__button}>Start</button>

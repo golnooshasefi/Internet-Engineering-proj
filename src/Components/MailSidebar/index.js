@@ -44,7 +44,7 @@ function Mailsidebar() {
         <div className={classes["user-info__description"]}>
           <div className={classes.info}>
             <Avatar
-              sx={{ m: 1, bgcolor: teal[500] }}
+              sx={{ bgcolor: teal[500] }}
               className={classes.container__form_Avatar}
             ></Avatar>
             <div className={classes["user-info__title"]}>Golnoosh</div>

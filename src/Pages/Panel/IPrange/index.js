@@ -1,5 +1,5 @@
-import { Divider, TextField, Toolbar, Typography } from "@mui/material";
-import { Box } from "@mui/system";
+import { TextField, Toolbar, Typography } from "@mui/material";
+
 import classes from "./Iprange.module.scss";
 
 import axiosInstance from "../../../axios";
@@ -35,8 +35,13 @@ function Iprange() {
 
   return (
     <div className={classes.container}>
-      <span className={classes.container__header}>Change IP Range</span>
-      <span>You can change your IP range here</span>
+      <div className={classes.container__header}>
+        <Typography variant="h4" noWrap component="div">
+          DHCP Config
+        </Typography>
+      </div>
+
+      <span className={classes.title}>You can change your IP range here</span>
       <div className={classes.iprange}>
         <form className={classes.form} onSubmit={handleSubmit}>
           <div>
@@ -75,8 +80,10 @@ function Iprange() {
               />
             </span>
           </div>
+
           <input type="submit" value="Submit" className={classes.submitbtn} />
         </form>
+        {success && <div> Suucessfuly Changed!</div>}
       </div>
     </div>
   );

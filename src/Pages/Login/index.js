@@ -2,7 +2,7 @@ import axiosInstance from "../../axios";
 import UserContext from "../../store/UserContext";
 
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 import { Button, TextField } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
@@ -18,12 +18,7 @@ import { teal } from "@mui/material/colors";
 // };
 
 function Login(props) {
-  //   const [email, setEmail] = useState("");
-  // const [pass, setPass] = useState("");
-  // const [username, setUsername] = useState("");
-
-  // const { login } = useContext(UserContext);
-  // const navigate = useNavigate();
+  const { login } = useContext(UserContext);
 
   const [formData, updateFormData] = useState({
     email: "",
@@ -40,21 +35,21 @@ function Login(props) {
   const handleSumbit = (e) => {
     e.preventDefault();
     // send `pass` and `username` to backend
-    // axiosInstance
-    //   .post(`accounts/api/token`, {
-    //     username: formData.username,
-    //     password: formData.password,
-    //   })
-    //   .then((res) => {
-    //     if (res.status === 200) {
-    //       login(res.data.type, res.data.username);
-    //       localStorage.setItem("access_token", res.data.access);
-    //       localStorage.setItem("refresh_token", res.data.refresh);
-    //       axiosInstance.defaults.headers["Authorization"] =
-    //         "Bearer " + localStorage.getItem("access_token");
-    //       navigate(-1);
-    //     }
-    //   });
+    axiosInstance
+      .post(`accounts/api/token`, {
+        username: formData.username,
+        password: formData.password,
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          login(res.data.type, res.data.username);
+          localStorage.setItem("access_token", res.data.access);
+          localStorage.setItem("refresh_token", res.data.refresh);
+          axiosInstance.defaults.headers["Authorization"] =
+            "Bearer " + localStorage.getItem("access_token");
+          // navigate(-1);
+        }
+      });
   };
 
   return (
@@ -80,7 +75,7 @@ function Login(props) {
               label="Username"
               variant="outlined"
               name="username"
-              sx={{ mt: 2}}
+              sx={{ mt: 2 }}
               // sx={{ fontSize: 18 }}
             />
 

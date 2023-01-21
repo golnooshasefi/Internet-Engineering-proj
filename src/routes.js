@@ -19,7 +19,7 @@ export const routes = [
       { path: "dhcp-ip", element: <Iprange /> },
 
       { path: "mail-config", element: <Mailconfig /> },
+      { path: "logs", element: <Logs /> },
     ],
   },
-  { path: "logs", element: <Logs /> },
 ];

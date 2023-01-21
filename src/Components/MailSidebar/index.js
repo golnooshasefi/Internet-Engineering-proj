@@ -34,20 +34,20 @@ function Mailsidebar() {
       variant="permanent"
       anchor="left"
     >
-      <Toolbar>
+      <Toolbar className={classes.tool}>
         <Typography variant="h6" noWrap component="div">
-          USer panel
+          User panel
         </Typography>
       </Toolbar>
       <Divider />
-      <div className={classes["seller-info"]}>
-        <div className={classes["seller-info__description"]}>
+      <div className={classes["user-info"]}>
+        <div className={classes["user-info__description"]}>
           <div className={classes.info}>
             <Avatar
               sx={{ m: 1, bgcolor: teal[500] }}
               className={classes.container__form_Avatar}
             ></Avatar>
-            <div className={classes["seller-info__title"]}>Golnoosh Asefi</div>
+            <div className={classes["user-info__title"]}>Golnoosh</div>
           </div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 
 import { useState } from "react";
 
@@ -6,32 +6,39 @@ import axiosInstance from "../../../axios";
 import classes from "./Logs.module.scss";
 import data from "../../../data.json";
 function Logs() {
-  // let [logs, setLogs] = useState([data]);
+  let [logs, setLogs] = useState([]);
 
   const handleLogs = () => {
-    // axiosInstance.get(`/accounts/showLog/`).then((res) => {
-    //   if (res.status === 200) {
-    //     setLogs(res.data);
-    //   }
-    // });
-    // setLogs(data);
+    axiosInstance.get(`/accounts/showLog/`).then((res) => {
+      if (res.status === 200) {
+        setLogs(res.data);
+      }
+    });
   };
   return (
     <>
+      <Typography
+        variant="h4"
+        noWrap
+        component="div"
+        className={classes.header}
+      >
+        Your Logs
+      </Typography>
+      <div>Click on the button to recieve your logs</div>
       <div className={classes.container}>
         <div className={classes.container__showlog}>
-          {data.map((log) => {
-            return <code>{log}</code>;
-          })}
+          <code className={classes.container__codeBox}>
+            {logs.map((log) => (
+              <div className={classes.log}>{JSON.stringify(log)}</div>
+            ))}
+          </code>
         </div>
-        <Button
-          //   className="container__form__submitbtn"
-          onClick={handleLogs}
-          variant="outlined"
-          sx={{ mt: 5, mb: 3 }}
-        >
+      </div>
+      <div className={classes.btnContainer}>
+        <button className={classes.btnContainer__btn} onClick={handleLogs}>
           Recieve
-        </Button>
+        </button>
       </div>
     </>
   );

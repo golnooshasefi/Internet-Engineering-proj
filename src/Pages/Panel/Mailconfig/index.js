@@ -12,13 +12,7 @@ function Mailconfig() {
 
   const handlestart = (e) => {
     e.preventDefault();
-    // axiosInstance
-    // .post(`accounts/register/`, {
-    //   // username: formData.fullName,
-    //   // email: formData.email,
-    //   // password: formData.password,
-    // })
-    // .then((res) => {
+    // axiosInstance.post(`accounts/register/`, {}).then((res) => {
     //   if (res.status === 200) {
     //     login(res.data.type, res.data.username);
     //     localStorage.setItem("access_token", res.data.access);

@@ -4,7 +4,35 @@ import axiosInstance from "../../../axios";
 import { useState } from "react";
 
 function Dhcpconfig() {
+  const [startSuccessMeassage, setStartSuccessMessage] = useState("");
+  const [startFailureMessage, setStartFailureMessage] = useState("");
+
+  const [stopSuccessMeassage, setStopSuccessMessage] = useState("");
+  const [stopFailureMessage, setStopFailureMessage] = useState("");
+
   const [status, setStatus] = useState([]);
+
+  const handleStop = (e) => {
+    e.preventDefault();
+    axiosInstance.post(``).then((res) => {
+      if (res.status === 200) {
+        setStopSuccessMessage("succesful");
+      } else {
+        setStopFailureMessage("error");
+      }
+    });
+  };
+
+  const handleStart = (e) => {
+    e.preventDefault();
+    axiosInstance.post(``).then((res) => {
+      if (res.status === 200) {
+        setStartSuccessMessage("succesful");
+      } else {
+        setStartFailureMessage("error");
+      }
+    });
+  };
   const getStatus = () => {
     axiosInstance.get(`panel/status`).then((res) => {
       if (res.status === 200) {
@@ -19,12 +47,21 @@ function Dhcpconfig() {
       </Typography>
       <div className={classes.container__start}>
         <span>You can click on this button to start your DHCP Server</span>
-        <button className={classes.container__button}>Start</button>
+        <button className={classes.container__button} onClick={handleStart}>
+          Start
+        </button>
+        {startSuccessMeassage && (
+          <div> Your Mail Server started succesfully!</div>
+        )}
+        {startFailureMessage && <div>An Error Occured!</div>}
       </div>
-      {/* <Divider variant="middle" /> */}
       <div className={classes.container__stop}>
         <span>You can click on this button to stop your DHCP Server</span>
-        <button className={classes.container__button}>Stop</button>
+        <button className={classes.container__button} onClick={handleStop}>
+          Stop
+        </button>
+        {stopSuccessMeassage && <div> Your Mail Server Stoped</div>}
+        {stopFailureMessage && <div>An Error Occured!</div>}
       </div>
       <div className={classes.container__status}>
         <span>

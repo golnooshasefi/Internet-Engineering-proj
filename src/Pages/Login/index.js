@@ -18,7 +18,7 @@ import { teal } from "@mui/material/colors";
 // };
 
 function Login(props) {
-  const { login } = useContext(UserContext);
+  const login = useContext(UserContext);
 
   const [formData, updateFormData] = useState({
     email: "",

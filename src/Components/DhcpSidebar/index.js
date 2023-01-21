@@ -22,7 +22,7 @@ import { Link } from "react-router-dom";
 
 const drawerWidth = 260;
 function Dhcpsidebar() {
-  // const { user } = useContext(UserContext);
+  const user = useContext(UserContext);
 
   return (
     <Drawer

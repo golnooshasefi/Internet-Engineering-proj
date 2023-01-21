@@ -14,9 +14,6 @@ import classes from "./Register.module.scss";
 import UserContext from "../../store/UserContext";
 
 function Register(props) {
-  // const [email, setEmail] = useState("");
-  // const [pass, setPass] = useState("");
-  // const [username, setUsername] = useState("");
   const navigate = useNavigate();
   const initialFormData = {
     username: "",
@@ -26,7 +23,7 @@ function Register(props) {
   };
   const [formData, updateFormData] = useState(initialFormData);
 
-  const { login } = useContext(UserContext);
+  const login = useContext(UserContext);
 
   const handleChange = (e) => {
     updateFormData({
@@ -36,6 +33,12 @@ function Register(props) {
     });
   };
 
+  const handleBtnChange = (e) => {
+    updateFormData({
+      ...formData,
+      type: e.target.value,
+    });
+  };
   const handleSumbit = (e) => {
     e.preventDefault();
     axiosInstance
@@ -53,10 +56,6 @@ function Register(props) {
           axiosInstance.defaults.headers["Authorization"] =
             "Bearer " + localStorage.getItem("access_token");
           navigate(-1);
-          // // history.push("/login");
-          // // console.log("axios");
-          // console.log(res);
-          // console.log(res.data);
         }
       });
   };
@@ -76,7 +75,6 @@ function Register(props) {
                 Sign Up
               </Typography>
             </div>
-            {/* <label htmlFor="email">email</label> */}
             <TextField
               value={formData.email}
               onChange={handleChange}
@@ -85,18 +83,15 @@ function Register(props) {
               id="email"
               name="email"
               variant="outlined"
-              // sx={{ mb: 2, mt: 2 }}
               sx={{
                 mb: 2,
                 mt: 2,
-                // color: purple[800],
                 "MuiInputBase-root": {
                   color: teal[600],
                 },
               }}
             />
 
-            {/* <label htmlFor="text">username</label> */}
             <TextField
               value={formData.username}
               onChange={handleChange}
@@ -107,7 +102,6 @@ function Register(props) {
               variant="outlined"
               sx={{ mb: 2 }}
             />
-            {/* <label htmlFor="password">password</label> */}
             <TextField
               type="password"
               value={formData.password}
@@ -125,17 +119,40 @@ function Register(props) {
                 aria-labelledby="user-type"
                 defaultValue="DHCP"
                 name="radio-buttons-group"
-                onChange={handleChange}
+                value={formData.type}
+                onChange={handleBtnChange}
               >
                 <FormControlLabel
-                  value={formData.type}
+                  value="Admin"
                   name="type"
                   control={
                     <Radio
                       sx={{
-                        color: purple[800],
+                        color: teal[500],
+                        // fontSize: "18",
                         "&.Mui-checked": {
                           color: teal[500],
+                        },
+                        "& .MuiSvgIcon-root": {
+                          fontSize: 25,
+                        },
+                      }}
+                    />
+                  }
+                  label="Admin"
+                />
+                <FormControlLabel
+                  value="DHCP"
+                  name="type"
+                  control={
+                    <Radio
+                      sx={{
+                        color: teal[500],
+                        "&.Mui-checked": {
+                          color: teal[500],
+                        },
+                        "& .MuiSvgIcon-root": {
+                          fontSize: 25,
                         },
                       }}
                     />
@@ -143,7 +160,7 @@ function Register(props) {
                   label="DHCP"
                 />
                 <FormControlLabel
-                  value={formData.type}
+                  value="Mail"
                   name="type"
                   control={
                     <Radio
@@ -152,13 +169,16 @@ function Register(props) {
                         "&.Mui-checked": {
                           color: teal[500],
                         },
+                        "& .MuiSvgIcon-root": {
+                          fontSize: 25,
+                        },
                       }}
                     />
                   }
-                  label="Mail Server"
+                  label="Mail "
                 />
                 <FormControlLabel
-                  value={formData.type}
+                  value="Web"
                   name="type"
                   control={
                     <Radio
@@ -167,10 +187,13 @@ function Register(props) {
                         "&.Mui-checked": {
                           color: teal[500],
                         },
+                        "& .MuiSvgIcon-root": {
+                          fontSize: 25,
+                        },
                       }}
                     />
                   }
-                  label="Web Server"
+                  label="Web"
                 />
               </RadioGroup>
             </FormControl>
@@ -185,7 +208,7 @@ function Register(props) {
               </Button>
             </div>
           </form>
-          <Link to="/register" className={classes.link}>
+          <Link to="/login" className={classes.link}>
             <Button onClick={() => props.onFormSwitch("login")} variant="text">
               Already have an accout? Login here
             </Button>

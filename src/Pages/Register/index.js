@@ -55,7 +55,7 @@ function Register(props) {
           localStorage.setItem("refresh_token", res.data.refresh);
           axiosInstance.defaults.headers["Authorization"] =
             "Bearer " + localStorage.getItem("access_token");
-          navigate("panel");
+          navigate("/panel");
         }
       });
   };
@@ -175,6 +175,7 @@ function Register(props) {
                 type="submit"
                 variant="outlined"
                 sx={{ mt: 5, mb: 3 }}
+                onClick={handleSumbit}
               >
                 Sign Up
               </Button>

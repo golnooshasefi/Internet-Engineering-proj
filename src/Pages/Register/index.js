@@ -55,7 +55,7 @@ function Register(props) {
           localStorage.setItem("refresh_token", res.data.refresh);
           axiosInstance.defaults.headers["Authorization"] =
             "Bearer " + localStorage.getItem("access_token");
-          navigate(-1);
+          navigate("panel");
         }
       });
   };
@@ -123,25 +123,6 @@ function Register(props) {
                 onChange={handleBtnChange}
               >
                 <FormControlLabel
-                  value="Admin"
-                  name="type"
-                  control={
-                    <Radio
-                      sx={{
-                        color: teal[500],
-                        // fontSize: "18",
-                        "&.Mui-checked": {
-                          color: teal[500],
-                        },
-                        "& .MuiSvgIcon-root": {
-                          fontSize: 25,
-                        },
-                      }}
-                    />
-                  }
-                  label="Admin"
-                />
-                <FormControlLabel
                   value="DHCP"
                   name="type"
                   control={
@@ -150,9 +131,6 @@ function Register(props) {
                         color: teal[500],
                         "&.Mui-checked": {
                           color: teal[500],
-                        },
-                        "& .MuiSvgIcon-root": {
-                          fontSize: 25,
                         },
                       }}
                     />
@@ -169,9 +147,6 @@ function Register(props) {
                         "&.Mui-checked": {
                           color: teal[500],
                         },
-                        "& .MuiSvgIcon-root": {
-                          fontSize: 25,
-                        },
                       }}
                     />
                   }
@@ -186,9 +161,6 @@ function Register(props) {
                         color: teal[500],
                         "&.Mui-checked": {
                           color: teal[500],
-                        },
-                        "& .MuiSvgIcon-root": {
-                          fontSize: 25,
                         },
                       }}
                     />

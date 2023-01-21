@@ -2,7 +2,7 @@ import axiosInstance from "../../axios";
 import UserContext from "../../store/UserContext";
 
 import { Link } from "react-router-dom";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { Button, TextField } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
@@ -19,6 +19,7 @@ import { teal } from "@mui/material/colors";
 
 function Login(props) {
   const login = useContext(UserContext);
+  const navigate = useNavigate();
 
   const [formData, updateFormData] = useState({
     email: "",
@@ -47,7 +48,7 @@ function Login(props) {
           localStorage.setItem("refresh_token", res.data.refresh);
           axiosInstance.defaults.headers["Authorization"] =
             "Bearer " + localStorage.getItem("access_token");
-          // navigate(-1);
+          navigate("panel");
         }
       });
   };

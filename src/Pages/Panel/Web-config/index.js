@@ -1,7 +1,9 @@
 import classes from "./Webconfig.module.scss";
 import { Divider, Typography } from "@mui/material";
+
 import axiosInstance from "../../../axios";
 import { useState } from "react";
+
 
 function Webconfig() {
   const [startSuccessMeassage, setStartSuccessMessage] = useState("");
@@ -43,7 +45,9 @@ function Webconfig() {
   return (
     <div className={classes.container}>
       <Typography variant="h6" noWrap component="div">
+
         Web Server Config
+
       </Typography>
       <div className={classes.container__start}>
         <span>You can click on this button to start your Web Server</span>

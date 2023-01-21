@@ -3,6 +3,7 @@ import classes from "./Mailconfig.module.scss";
 import UserContext from "../../../store/UserContext";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Typography } from "@mui/material";
 
 function Mailconfig() {
   // const { login } = useContext(UserContext);
@@ -39,8 +40,9 @@ function Mailconfig() {
 
   return (
     <div className={classes.container}>
-      <div className={classes.container__header}>Mail Server Config</div>
-
+      <Typography variant="h6" noWrap component="div">
+        Mail Config
+      </Typography>
       <div className={classes.container__start}>
         <span>You can click on this button to start your Mail Server</span>
         <button className={classes.container__button} onClick={handlestart}>

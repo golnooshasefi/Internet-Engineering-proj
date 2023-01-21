@@ -1,4 +1,5 @@
 import * as React from "react";
+
 import Drawer from "@mui/material/Drawer";
 
 import Toolbar from "@mui/material/Toolbar";
@@ -12,7 +13,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import DnsIcon from "@mui/icons-material/Dns";
 import SettingsIcon from "@mui/icons-material/Settings";
 import BuildIcon from "@mui/icons-material/Build";
-import { AppBar, Avatar, Typography } from "@mui/material";
+import { Avatar, Typography } from "@mui/material";
 import { teal } from "@mui/material/colors";
 
 import classes from "../Shared/Sidebar.module.scss";
@@ -20,7 +21,7 @@ import UserContext from "../../store/UserContext";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 
-const drawerWidth = 260;
+const drawerWidth = 280;
 function Websidebar() {
   const user = useContext(UserContext);
 
@@ -47,7 +48,9 @@ function Websidebar() {
         <div className={classes["user-info__description"]}>
           <div className={classes.info}>
             <Avatar
-              sx={{ m: 1, bgcolor: teal[500] }}
+
+              sx={{ bgcolor: teal[500] }}
+
               className={classes.container__form_Avatar}
             ></Avatar>
             {/* <div className={classes["user-info__title"]}>{user.username}</div> */}
@@ -60,12 +63,14 @@ function Websidebar() {
 
       <Divider />
       <List>
-        {/* {["All mail", "Trash", "Spam"].map((text, index) => ( */}
+
         <Link to="logs" className={classes.link}>
           <ListItem disablePadding>
             <ListItemButton>
               <ListItemIcon>
+
                 <DnsIcon />
+
               </ListItemIcon>
               Recieve your log
             </ListItemButton>

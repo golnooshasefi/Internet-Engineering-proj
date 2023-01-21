@@ -14,7 +14,6 @@ function Logs() {
         setLogs(res.data);
       }
     });
-    setLogs(data);
   };
   return (
     <>

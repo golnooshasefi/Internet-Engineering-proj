@@ -7,6 +7,9 @@ import Logs from "./Pages/Panel/Logs";
 import Mailconfig from "./Pages/Panel/Mailconfig";
 import Webconfig from "./Pages/Panel/Web-config";
 
+import Webchangedir from "./Pages/Panel/web-change-dir";
+
+
 export const routes = [
   // { path: "/", element: <Homepage /> },
   { path: "login", element: <Login /> },
@@ -22,6 +25,9 @@ export const routes = [
       { path: "mail-config", element: <Mailconfig /> },
       { path: "web-config", element: <Webconfig /> },
       { path: "logs", element: <Logs /> },
+
+      { path: "web-config", element: <Webconfig />},
+      { path: "web-change-dir", element: <Webchangedir />},
     ],
   },
 ];

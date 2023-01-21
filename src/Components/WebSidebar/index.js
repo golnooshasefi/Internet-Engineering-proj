@@ -17,10 +17,14 @@ import { Avatar, Typography } from "@mui/material";
 import { teal } from "@mui/material/colors";
 
 import classes from "../Shared/Sidebar.module.scss";
+import UserContext from "../../store/UserContext";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 
 const drawerWidth = 280;
 function Websidebar() {
+  const user = useContext(UserContext);
+
   return (
     <Drawer
       sx={{
@@ -41,15 +45,16 @@ function Websidebar() {
       </Toolbar>
       <Divider />
       <div className={classes["user-info"]}>
-        {/* <img src="./images/user1.png" className={classes.userImage} /> */}
-
         <div className={classes["user-info__description"]}>
           <div className={classes.info}>
             <Avatar
+
               sx={{ bgcolor: teal[500] }}
+
               className={classes.container__form_Avatar}
             ></Avatar>
-            <div className={classes["user-info__title"]}>Golnoosh Asefi</div>
+            {/* <div className={classes["user-info__title"]}>{user.username}</div> */}
+            <div className={classes["user-info__title"]}>Golnoosh</div>
           </div>
         </div>
       </div>
@@ -58,11 +63,14 @@ function Websidebar() {
 
       <Divider />
       <List>
+
         <Link to="logs" className={classes.link}>
           <ListItem disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                <DnsIcon sx={{ fontSize: 20 }} />
+
+                <DnsIcon />
+
               </ListItemIcon>
               Recieve your log
             </ListItemButton>
@@ -73,7 +81,7 @@ function Websidebar() {
           <ListItem disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                <SettingsIcon sx={{ fontSize: 20 }} />
+                <SettingsIcon />
               </ListItemIcon>
               Web Server Config
             </ListItemButton>
@@ -93,6 +101,7 @@ function Websidebar() {
         {/* ))} */}
       </List>
     </Drawer>
+    // </Box>
   );
 }
 

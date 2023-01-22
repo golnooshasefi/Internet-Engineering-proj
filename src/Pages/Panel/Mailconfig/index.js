@@ -2,12 +2,12 @@ import axiosInstance from "../../../axios";
 import classes from "./Mailconfig.module.scss";
 import UserContext from "../../../store/UserContext";
 import { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { Typography } from "@mui/material";
 
 function Mailconfig() {
   // const { login } = useContext(UserContext);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const [startSuccessMeassage, setStartSuccessMessage] = useState("");
   const [startFailureMessage, setStartFailureMessage] = useState("");
@@ -19,7 +19,7 @@ function Mailconfig() {
 
   const handlestop = (e) => {
     e.preventDefault();
-    axiosInstance.post(``).then((res) => {
+    axiosInstance.post(`/accounts/mail/stop`).then((res) => {
       if (res.status === 200) {
         setStopSuccessMessage("succesful");
       } else {
@@ -30,7 +30,7 @@ function Mailconfig() {
 
   const handlestart = (e) => {
     e.preventDefault();
-    axiosInstance.post(``).then((res) => {
+    axiosInstance.post(`/accounts/mail/start`).then((res) => {
       if (res.status === 200) {
         setStartSuccessMessage("succesful");
       } else {
@@ -40,7 +40,7 @@ function Mailconfig() {
   };
 
   const getStatus = () => {
-    axiosInstance.get(`panel/status`).then((res) => {
+    axiosInstance.get(`/accounts/mail/status`).then((res) => {
       if (res.status === 200) {
         setStatus(res);
       }

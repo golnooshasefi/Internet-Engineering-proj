@@ -14,7 +14,7 @@ function Dhcpconfig() {
 
   const handleStop = (e) => {
     e.preventDefault();
-    axiosInstance.post(``).then((res) => {
+    axiosInstance.post(`/accounts/dhcp/stop`).then((res) => {
       if (res.status === 200) {
         setStopSuccessMessage("succesful");
       } else {
@@ -25,7 +25,7 @@ function Dhcpconfig() {
 
   const handleStart = (e) => {
     e.preventDefault();
-    axiosInstance.post(``).then((res) => {
+    axiosInstance.post(`/accounts/dhcp/start`).then((res) => {
       if (res.status === 200) {
         setStartSuccessMessage("succesful");
       } else {
@@ -34,7 +34,7 @@ function Dhcpconfig() {
     });
   };
   const getStatus = () => {
-    axiosInstance.get(`panel/status`).then((res) => {
+    axiosInstance.get(`/accounts/dhcp/status`).then((res) => {
       if (res.status === 200) {
         setStatus(res);
       }

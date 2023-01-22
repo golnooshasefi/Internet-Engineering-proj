@@ -45,9 +45,9 @@ function Register(props) {
     e.preventDefault();
     axiosInstance
       .post(`accounts/register/`, {
-        username: formData.fullName,
+        username: formData.username,
         email: formData.email,
-        type: formData.phoneNumber,
+        type: formData.type,
         password: formData.password,
       })
       .then((res) => {

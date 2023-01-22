@@ -11,7 +11,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 import axiosInstance from "../../axios";
 import classes from "./Register.module.scss";
-import UserContext from "../../store/UserContext";
+import UserContext, { UserContextProvider } from "../../store/UserContext";
 
 function Register(props) {
   const navigate = useNavigate();
@@ -21,9 +21,9 @@ function Register(props) {
     type: "",
     password: "",
   };
-  const [formData, updateFormData] = useState(initialFormData);
 
-  const { login } = useContext(UserContext);
+  const { login } = useContext(UserContextProvider);
+  const [formData, updateFormData] = useState(initialFormData);
 
   const handleChange = (e) => {
     updateFormData({

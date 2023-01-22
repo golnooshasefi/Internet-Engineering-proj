@@ -105,7 +105,7 @@ function Login(props) {
 
           <Link to="/register" className={classes.link}>
             <Button
-              onClick={() => props.onFormSwitch("register")}
+              // onClick={() => props.onFormSwitch("register")}
               variant="text"
             >
               Don't have an accout? Register here

@@ -23,7 +23,7 @@ function Register(props) {
   };
   const [formData, updateFormData] = useState(initialFormData);
 
-  const login = useContext(UserContext);
+  const { login } = useContext(UserContext);
 
   const handleChange = (e) => {
     updateFormData({
@@ -182,9 +182,7 @@ function Register(props) {
             </div>
           </form>
           <Link to="/login" className={classes.link}>
-            <Button onClick={() => props.onFormSwitch("login")} variant="text">
-              Already have an accout? Login here
-            </Button>
+            <Button variant="text">Already have an accout? Login here</Button>
           </Link>
         </div>
       </div>

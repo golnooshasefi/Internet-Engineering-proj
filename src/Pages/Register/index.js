@@ -4,14 +4,14 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
-import { purple, teal } from "@mui/material/colors";
+import { teal } from "@mui/material/colors";
 
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import axiosInstance from "../../axios";
 import classes from "./Register.module.scss";
-import UserContext, { UserContextProvider } from "../../store/UserContext";
+import UserContext from "../../store/UserContext";
 
 function Register(props) {
   const navigate = useNavigate();
@@ -22,7 +22,8 @@ function Register(props) {
     password: "",
   };
 
-  const { login } = useContext(UserContextProvider);
+  const { login } = useContext(UserContext);
+  console.log(login);
   const [formData, updateFormData] = useState(initialFormData);
 
   const handleChange = (e) => {

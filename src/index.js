@@ -8,7 +8,7 @@ import "@fontsource/roboto/700.css";
 import CssBaseline from "@mui/material/CssBaseline";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { routes } from "./routes";
-// import UserContext from "../../store/UserContext";
+import UserContext from "../src/store/UserContext";
 import { UserContextProvider } from "./store/UserContext";
 const router = createBrowserRouter(routes);
 

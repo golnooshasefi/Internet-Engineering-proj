@@ -17,9 +17,13 @@ import { teal } from "@mui/material/colors";
 
 import classes from "../Shared/Sidebar.module.scss";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../../store/UserContext";
 
 const drawerWidth = 260;
 function Mailsidebar() {
+  const context = useContext(UserContext);
+  const { user } = context;
   return (
     <Drawer
       sx={{
@@ -47,7 +51,7 @@ function Mailsidebar() {
               sx={{ bgcolor: teal[500] }}
               className={classes.container__form_Avatar}
             ></Avatar>
-            <div className={classes["user-info__title"]}>Golnoosh</div>
+            <div className={classes["user-info__title"]}>{user.username}</div>
           </div>
         </div>
       </div>

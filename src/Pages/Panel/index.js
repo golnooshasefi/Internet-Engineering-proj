@@ -5,13 +5,15 @@ import Dhcpsidebar from "../../Components/DhcpSidebar";
 import Mailsidebar from "../../Components/MailSidebar";
 import Websidebar from "../../Components/WebSidebar";
 
-import UserContext, { UserContextProvider } from "../../store/UserContext";
+import { UserContext } from "../../store/UserContext";
 
 import { Outlet } from "react-router-dom";
 import { useContext } from "react";
 
 function Panel() {
-  const { user } = useContext(UserContext);
+  const context = useContext(UserContext);
+  const { user } = context;
+  console.log(user);
   // return (
   //   <>
   {

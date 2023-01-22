@@ -17,14 +17,14 @@ import { Avatar, Typography } from "@mui/material";
 import { teal } from "@mui/material/colors";
 
 import classes from "../Shared/Sidebar.module.scss";
-import UserContext from "../../store/UserContext";
+import { UserContext } from "../../store/UserContext";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 
 const drawerWidth = 280;
 function Websidebar() {
-  const user = useContext(UserContext);
-
+  const context = useContext(UserContext);
+  const { user } = context;
   return (
     <Drawer
       sx={{
@@ -48,13 +48,11 @@ function Websidebar() {
         <div className={classes["user-info__description"]}>
           <div className={classes.info}>
             <Avatar
-
               sx={{ bgcolor: teal[500] }}
-
               className={classes.container__form_Avatar}
             ></Avatar>
-            {/* <div className={classes["user-info__title"]}>{user.username}</div> */}
-            <div className={classes["user-info__title"]}>Golnoosh</div>
+            <div className={classes["user-info__title"]}>{user.username}</div>
+            {/* <div className={classes["user-info__title"]}>Golnoosh</div> */}
           </div>
         </div>
       </div>
@@ -63,14 +61,11 @@ function Websidebar() {
 
       <Divider />
       <List>
-
         <Link to="logs" className={classes.link}>
           <ListItem disablePadding>
             <ListItemButton>
               <ListItemIcon>
-
                 <DnsIcon />
-
               </ListItemIcon>
               Recieve your log
             </ListItemButton>

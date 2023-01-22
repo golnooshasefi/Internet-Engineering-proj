@@ -1,5 +1,5 @@
 import axiosInstance from "../../axios";
-import UserContext from "../../store/UserContext";
+import { UserContext } from "../../store/UserContext";
 
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -18,7 +18,8 @@ import { teal } from "@mui/material/colors";
 // };
 
 function Login(props) {
-  const login = useContext(UserContext);
+  const context = useContext(UserContext);
+  const { login } = context;
   const navigate = useNavigate();
 
   const [formData, updateFormData] = useState({

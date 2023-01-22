@@ -9,7 +9,7 @@ const UserContext = createContext({
   auth: false,
 });
 
-export function UserContextProvider({ children }) {
+function UserContextProvider({ children }) {
   const [user, setUser] = useState({
     type: "",
     username: "",
@@ -79,4 +79,4 @@ export function UserContextProvider({ children }) {
     </UserContext.Provider>
   );
 }
-export default { UserContext, UserContextProvider };
+export { UserContext, UserContextProvider };

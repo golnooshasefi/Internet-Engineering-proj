@@ -119,7 +119,7 @@ function Adminsidebar() {
         </Link>
 
         <Link to="mail-config" className={classes.link}>
-          <ListItem>
+          <ListItem disablePadding>
             <ListItemButton>
               <ListItemIcon>
                 <MailIcon />

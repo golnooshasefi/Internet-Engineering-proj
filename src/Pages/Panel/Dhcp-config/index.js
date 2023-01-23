@@ -32,7 +32,12 @@ function Dhcpconfig() {
     e.preventDefault();
     axiosInstance.post(`/accounts/dhcp/start`).then((res) => {
       if (res.status === 200) {
-        setStartSuccessMessage("succesful");
+        if (res.startError === "") {
+          setStartSuccessMessage("succesful");
+        }
+        else {
+          setStartFailureMessage(res.startError);
+        }
       } else {
         setStartFailureMessage("error");
       }

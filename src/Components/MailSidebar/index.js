@@ -60,17 +60,19 @@ function Mailsidebar() {
 
       <Divider />
       <List>
-        <ListItem>
-          <ListItemButton>
-            <ListItemIcon>
-              <DnsIcon />
-            </ListItemIcon>
-            Recieve your log
-          </ListItemButton>
-        </ListItem>
+      <Link to="logs" className={classes.link}>
+          <ListItem disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                <DnsIcon />
+              </ListItemIcon>
+              Recieve your log
+            </ListItemButton>
+          </ListItem>
+        </Link>
 
         <Link to="mail-config" className={classes.link}>
-          <ListItem>
+          <ListItem disablePadding>
             <ListItemButton>
               <ListItemIcon>
                 <MailIcon />

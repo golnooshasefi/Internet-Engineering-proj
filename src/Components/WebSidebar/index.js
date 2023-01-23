@@ -21,7 +21,7 @@ import { UserContext } from "../../store/UserContext";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 
-const drawerWidth = 280;
+const drawerWidth = 260;
 function Websidebar() {
   const context = useContext(UserContext);
   const { user } = context;

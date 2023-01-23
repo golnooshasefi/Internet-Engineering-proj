@@ -16,7 +16,12 @@ function Dhcpconfig() {
     e.preventDefault();
     axiosInstance.post(`/accounts/dhcp/stop`).then((res) => {
       if (res.status === 200) {
-        setStopSuccessMessage("succesful");
+        if(res.stopError === "") {
+          setStopSuccessMessage("succesful");
+        }
+        else {
+          setStopFailureMessage(res.stopError);
+        }
       } else {
         setStopFailureMessage("error");
       }

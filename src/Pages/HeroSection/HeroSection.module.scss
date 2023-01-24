@@ -31,11 +31,16 @@
 .ButtonRight {  
   margin-left: 0rem;
   padding: 1rem 2rem;
+  width: 15rem;
+  height: 3rem;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
   background-image: linear-gradient(to right bottom, #62B6B7, #62B6B7);
   transition: all 0.5s;
   text-align: center;
   position: relative;
   overflow: hidden;
+  font-size: medium;
 
   &:after {
     content: "→";
@@ -61,11 +66,15 @@
 }
 
 .ButtonLeft {
+  width: 15rem;
+  height: 3rem;
   padding: 1rem 2rem;
   transition: all 0.5s;
   text-align: center;
   position: relative;
   overflow: hidden;
+  font-size: medium;
+  line-height: 1rem;
 
   &:after {
     content: "→";

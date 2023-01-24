@@ -44,7 +44,7 @@ function Webconfig() {
   };
   return (
     <div className={classes.container}>
-      <Typography variant="h6" noWrap component="div">
+      <Typography variant="h4" noWrap component="div">
 
         Web Server Config
 

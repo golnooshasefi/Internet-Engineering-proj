@@ -16,7 +16,12 @@ function Dhcpconfig() {
     e.preventDefault();
     axiosInstance.post(`/accounts/dhcp/stop`).then((res) => {
       if (res.status === 200) {
-        setStopSuccessMessage("succesful");
+        if(res.stopError === "") {
+          setStopSuccessMessage("succesful");
+        }
+        else {
+          setStopFailureMessage(res.stopError);
+        }
       } else {
         setStopFailureMessage("error");
       }
@@ -27,7 +32,12 @@ function Dhcpconfig() {
     e.preventDefault();
     axiosInstance.post(`/accounts/dhcp/start`).then((res) => {
       if (res.status === 200) {
-        setStartSuccessMessage("succesful");
+        if (res.startError === "") {
+          setStartSuccessMessage("succesful");
+        }
+        else {
+          setStartFailureMessage(res.startError);
+        }
       } else {
         setStartFailureMessage("error");
       }
@@ -51,7 +61,7 @@ function Dhcpconfig() {
           Start
         </button>
         {startSuccessMeassage && (
-          <div> Your Mail Server started succesfully!</div>
+          <div> Your DHCP Server started succesfully!</div>
         )}
         {startFailureMessage && <div>An Error Occured!</div>}
       </div>
@@ -60,7 +70,7 @@ function Dhcpconfig() {
         <button className={classes.container__button} onClick={handleStop}>
           Stop
         </button>
-        {stopSuccessMeassage && <div> Your Mail Server Stoped</div>}
+        {stopSuccessMeassage && <div> Your DHCP Server Stoped</div>}
         {stopFailureMessage && <div>An Error Occured!</div>}
       </div>
       <div className={classes.container__status}>

@@ -4,7 +4,6 @@ import { Divider, Typography } from "@mui/material";
 import axiosInstance from "../../../axios";
 import { useState } from "react";
 
-
 function Webconfig() {
   const [startSuccessMeassage, setStartSuccessMessage] = useState("");
   const [startFailureMessage, setStartFailureMessage] = useState("");
@@ -16,7 +15,7 @@ function Webconfig() {
 
   const handleStop = (e) => {
     e.preventDefault();
-    axiosInstance.post(``).then((res) => {
+    axiosInstance.get(`/accounts/web/stop`).then((res) => {
       if (res.status === 200) {
         setStopSuccessMessage("succesful");
       } else {
@@ -27,7 +26,7 @@ function Webconfig() {
 
   const handleStart = (e) => {
     e.preventDefault();
-    axiosInstance.post(``).then((res) => {
+    axiosInstance.get(`/accounts/web/start/`).then((res) => {
       if (res.status === 200) {
         setStartSuccessMessage("succesful");
       } else {
@@ -36,7 +35,7 @@ function Webconfig() {
     });
   };
   const getStatus = () => {
-    axiosInstance.get(`panel/status`).then((res) => {
+    axiosInstance.get(`accounts/web/status/`).then((res) => {
       if (res.status === 200) {
         setStatus(res);
       }
@@ -45,9 +44,7 @@ function Webconfig() {
   return (
     <div className={classes.container}>
       <Typography variant="h4" noWrap component="div">
-
         Web Server Config
-
       </Typography>
       <div className={classes.container__start}>
         <span>You can click on this button to start your Web Server</span>

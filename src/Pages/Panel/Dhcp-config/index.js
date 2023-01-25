@@ -12,14 +12,28 @@ function Dhcpconfig() {
 
   const [status, setStatus] = useState([]);
 
+  const handleStart = (e) => {
+    e.preventDefault();
+    axiosInstance.get(`/accounts/dhcp/start`).then((res) => {
+      if (res.status === 200) {
+        if (res.startError === "") {
+          setStartSuccessMessage("succesful");
+        } else {
+          setStartFailureMessage(res.startError);
+        }
+      } else {
+        setStartFailureMessage("error");
+      }
+    });
+  };
+
   const handleStop = (e) => {
     e.preventDefault();
-    axiosInstance.post(`/accounts/dhcp/stop`).then((res) => {
+    axiosInstance.get(`/accounts/dhcp/stop`).then((res) => {
       if (res.status === 200) {
-        if(res.stopError === "") {
+        if (res.stopError === "") {
           setStopSuccessMessage("succesful");
-        }
-        else {
+        } else {
           setStopFailureMessage(res.stopError);
         }
       } else {
@@ -28,21 +42,6 @@ function Dhcpconfig() {
     });
   };
 
-  const handleStart = (e) => {
-    e.preventDefault();
-    axiosInstance.post(`/accounts/dhcp/start`).then((res) => {
-      if (res.status === 200) {
-        if (res.startError === "") {
-          setStartSuccessMessage("succesful");
-        }
-        else {
-          setStartFailureMessage(res.startError);
-        }
-      } else {
-        setStartFailureMessage("error");
-      }
-    });
-  };
   const getStatus = () => {
     axiosInstance.get(`/accounts/dhcp/status`).then((res) => {
       if (res.status === 200) {

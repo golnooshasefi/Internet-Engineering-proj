@@ -17,24 +17,24 @@ function Mailconfig() {
 
   const [status, setStatus] = useState([]);
 
-  const handlestop = (e) => {
-    e.preventDefault();
-    axiosInstance.post(`/accounts/mail/stop`).then((res) => {
-      if (res.status === 200) {
-        setStopSuccessMessage("succesful");
-      } else {
-        setStopFailureMessage("error");
-      }
-    });
-  };
-
   const handlestart = (e) => {
     e.preventDefault();
-    axiosInstance.post(`/accounts/mail/start`).then((res) => {
+    axiosInstance.get(`/accounts/mail/start`).then((res) => {
       if (res.status === 200) {
         setStartSuccessMessage("succesful");
       } else {
         setStartFailureMessage("error");
+      }
+    });
+  };
+
+  const handlestop = (e) => {
+    e.preventDefault();
+    axiosInstance.get(`/accounts/mail/stop`).then((res) => {
+      if (res.status === 200) {
+        setStopSuccessMessage("succesful");
+      } else {
+        setStopFailureMessage("error");
       }
     });
   };

@@ -4,13 +4,21 @@ import { UserContext } from "../../store/UserContext";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-import { Button, TextField } from "@mui/material";
+import {
+  Button,
+  IconButton,
+  InputAdornment,
+  InputLabel,
+  OutlinedInput,
+  TextField,
+} from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 
 import React, { useState, useContext } from "react";
 import classes from "./Login.module.scss";
 import { teal } from "@mui/material/colors";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 // const initialFormData = {
 //   email: "",
@@ -18,6 +26,11 @@ import { teal } from "@mui/material/colors";
 // };
 
 function Login(props) {
+  const [showPassword, setShowPassword] = React.useState(false);
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
   const context = useContext(UserContext);
   const { login } = context;
   const navigate = useNavigate();
@@ -38,7 +51,7 @@ function Login(props) {
     e.preventDefault();
     // send `pass` and `username` to backend
     axiosInstance
-      .post(`accounts/api/token`, {
+      .post(`accounts/login/`, {
         username: formData.username,
         password: formData.password,
       })
@@ -78,8 +91,30 @@ function Login(props) {
               variant="outlined"
               name="username"
               sx={{ mt: 2 }}
-              // sx={{ fontSize: 18 }}
             />
+
+            {/* <InputLabel htmlFor="outlined-adornment-password">
+              Password
+            </InputLabel>
+            <OutlinedInput
+              id="outlined-adornment-password"
+              type={showPassword ? "text" : "password"}
+              value={formData.password}
+              onChange={handleChange}
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                    edge="end"
+                  >
+                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              }
+              label="Password"
+            /> */}
 
             <TextField
               value={formData.password}

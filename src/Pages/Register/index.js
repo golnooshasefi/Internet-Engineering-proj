@@ -14,6 +14,10 @@ import classes from "./Register.module.scss";
 import { UserContext } from "../../store/UserContext";
 
 function Register(props) {
+  const [passwordShown, setPasswordShown] = useState(false);
+  const togglePasswordVisibility = () => {
+    setPasswordShown(passwordShown ? false : true);
+  };
   const navigate = useNavigate();
   const initialFormData = {
     username: "",
@@ -119,13 +123,13 @@ function Register(props) {
               <RadioGroup
                 row
                 aria-labelledby="user-type"
-                defaultValue="DHCP"
+                defaultValue="dhcp"
                 name="radio-buttons-group"
                 value={formData.type}
                 onChange={handleBtnChange}
               >
                 <FormControlLabel
-                  value="DHCP"
+                  value="dhcp"
                   name="type"
                   control={
                     <Radio
@@ -140,7 +144,7 @@ function Register(props) {
                   label="DHCP"
                 />
                 <FormControlLabel
-                  value="Mail"
+                  value="mail"
                   name="type"
                   control={
                     <Radio
@@ -155,7 +159,7 @@ function Register(props) {
                   label="Mail "
                 />
                 <FormControlLabel
-                  value="Web"
+                  value="web"
                   name="type"
                   control={
                     <Radio

@@ -1,13 +1,19 @@
 import axiosInstance from "../../../axios";
 import classes from "./Mailconfig.module.scss";
-import UserContext from "../../../store/UserContext";
+import { UserContext } from "../../../store/UserContext";
 import { useContext, useState } from "react";
 // import { useNavigate } from "react-router-dom";
 import { Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 function Mailconfig() {
-  // const { login } = useContext(UserContext);
+  // const context = useContext(UserContext);
+  // const { user } = context;
   // const navigate = useNavigate();
+
+  // if (user.type === "admin" || user.type === "web" || user.type === "dhcp") {
+  //   navigate(-1);
+  // }
 
   const [startSuccessMeassage, setStartSuccessMessage] = useState("");
   const [startFailureMessage, setStartFailureMessage] = useState("");

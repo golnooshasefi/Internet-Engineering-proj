@@ -2,9 +2,18 @@ import classes from "./Webconfig.module.scss";
 import { Divider, Typography } from "@mui/material";
 
 import axiosInstance from "../../../axios";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { UserContext } from "../../../store/UserContext";
 
 function Webconfig() {
+  // const context = useContext(UserContext);
+  // const { user } = context;
+  // const navigate = useNavigate();
+
+  // if (user.type === "admin" || user.type === "mail" || user.type === "mail") {
+  //   navigate(-1);
+  // }
   const [startSuccessMeassage, setStartSuccessMessage] = useState("");
   const [startFailureMessage, setStartFailureMessage] = useState("");
 

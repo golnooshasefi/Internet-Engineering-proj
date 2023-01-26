@@ -1,4 +1,13 @@
-import { TextField, Typography, Avatar, Button } from "@mui/material";
+import {
+  TextField,
+  Typography,
+  Avatar,
+  Button,
+  InputAdornment,
+  IconButton,
+  InputLabel,
+  OutlinedInput,
+} from "@mui/material";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -12,11 +21,13 @@ import { Link, useNavigate } from "react-router-dom";
 import axiosInstance from "../../axios";
 import classes from "./Register.module.scss";
 import { UserContext } from "../../store/UserContext";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 function Register(props) {
-  const [passwordShown, setPasswordShown] = useState(false);
-  const togglePasswordVisibility = () => {
-    setPasswordShown(passwordShown ? false : true);
+  const [showPassword, setShowPassword] = React.useState(false);
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
   };
   const navigate = useNavigate();
   const initialFormData = {
@@ -47,6 +58,12 @@ function Register(props) {
   };
   const handleSumbit = (e) => {
     e.preventDefault();
+    console.log(
+      formData.email,
+      formData.username,
+      formData.type,
+      formData.password
+    );
     axiosInstance
       .post(`accounts/register/`, {
         username: formData.username,
@@ -108,7 +125,7 @@ function Register(props) {
               variant="outlined"
               sx={{ mb: 2 }}
             />
-            <TextField
+            {/* <TextField
               type="password"
               value={formData.password}
               onChange={handleChange}
@@ -117,7 +134,31 @@ function Register(props) {
               variant="outlined"
               label="Password"
               sx={{ mb: 2 }}
-            />
+            /> */}
+            <FormControl variant="outlined">
+              <InputLabel htmlFor="password">Password</InputLabel>
+              <OutlinedInput
+                id="password"
+                type={showPassword ? "text" : "password"}
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                      edge="end"
+                    >
+                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                }
+                label="Password"
+                sx={{ mb: 3 }}
+              />
+            </FormControl>
             <FormControl>
               <FormLabel id="user-type">Select your type</FormLabel>
               <RadioGroup

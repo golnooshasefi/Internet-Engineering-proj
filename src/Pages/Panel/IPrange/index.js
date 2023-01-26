@@ -3,13 +3,24 @@ import { TextField, Toolbar, Typography } from "@mui/material";
 import classes from "./Iprange.module.scss";
 
 import axiosInstance from "../../../axios";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { UserContext } from "../../../store/UserContext";
 function Iprange() {
   // const [startip, setStartip] = useState("");
   // const [endip, setEndip] = useState("");
   // const [emptyStartIp, setEmptyStartIp] = useState(false);
   // const [emptyEndIp, setEmptyEndIp] = useState(false);
   const [response, setResponse] = useState(false);
+
+  // const context = useContext(UserContext);
+  // const { user } = context;
+  // const navigate = useNavigate();
+
+  // if (user.type === "admin" || user.type === "web" || user.type === "mail") {
+  //   navigate(-1);
+  // }
+  const [success, setSuccess] = useState(false);
   const [formData, updateFormData] = useState({
     startip: "",
     endip: "",
@@ -26,15 +37,14 @@ function Iprange() {
     setResponse(false);
     e.preventDefault();
     axiosInstance
-      .post("", {
+      .post(`/accounts/dhcp/changeIpRange/`, {
         startip: formData.startip,
         endip: formData.endip,
       })
       .then((res) => {
-        if(res.status === 200){
-          setResponse(res.change_range);
-        }
-        else {
+        if (res.status === 200) {
+          setResponse(res.data.change_range);
+        } else {
           setResponse("An error occurred.");
         }
       });
@@ -53,7 +63,7 @@ function Iprange() {
         <form className={classes.form} onSubmit={handleSubmit}>
           <div>
             <span className={classes.start}>
-              from 192.168.100.
+              from 192.168.10.
               <TextField
                 sx={{
                   width: { sm: 60 },
@@ -71,11 +81,11 @@ function Iprange() {
                   if (!/[0-9]/.test(event.key)) {
                     event.preventDefault();
                   }
-                }}  
+                }}
               />
             </span>
             <span>
-              to 192.168.100.
+              to 192.168.10.
               <TextField
                 sx={{
                   width: { sm: 60 },
@@ -96,7 +106,10 @@ function Iprange() {
                 }}
               />
             </span>
-            <div className={classes.status}>{response && <span>Your mail status is: </span>}{response}</div>
+            <div className={classes.status}>
+              {response && <span>Your mail status is: </span>}
+              {response}
+            </div>
           </div>
           <input type="submit" value="Submit" className={classes.submitbtn} />
         </form>

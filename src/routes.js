@@ -4,13 +4,13 @@ import Panel from "./Pages/Panel";
 import Dhcpconfig from "./Pages/Panel/Dhcp-config";
 import Iprange from "./Pages/Panel/IPrange";
 
-import HeroSection from "./Pages/HeroSection"
+import HeroSection from "./Pages/HeroSection";
 import Logs from "./Pages/Panel/Logs";
 import Mailconfig from "./Pages/Panel/Mailconfig";
 import Webconfig from "./Pages/Panel/Web-config";
 
 import Webchangedir from "./Pages/Panel/web-change-dir";
-
+import CreateEmail from "./Pages/Panel/Create-email";
 
 export const routes = [
   // { path: "/", element: <Homepage /> },
@@ -30,8 +30,9 @@ export const routes = [
       { path: "web-config", element: <Webconfig /> },
       { path: "logs", element: <Logs /> },
 
-      { path: "web-config", element: <Webconfig />},
-      { path: "web-change-dir", element: <Webchangedir />},
+      { path: "web-config", element: <Webconfig /> },
+      { path: "web-change-dir", element: <Webchangedir /> },
+      { path: "create-email", element: <CreateEmail /> },
     ],
   },
 ];

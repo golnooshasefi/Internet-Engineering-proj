@@ -58,12 +58,6 @@ function Register(props) {
   };
   const handleSumbit = (e) => {
     e.preventDefault();
-    console.log(
-      formData.email,
-      formData.username,
-      formData.type,
-      formData.password
-    );
     axiosInstance
       .post(`accounts/register/`, {
         username: formData.username,

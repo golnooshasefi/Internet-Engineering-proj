@@ -1,5 +1,5 @@
 import axiosInstance from "../../../axios";
-import classes from "./Mailconfig.module.scss";
+import classes from "../Configs.module.scss";
 import { UserContext } from "../../../store/UserContext";
 import { useContext, useState } from "react";
 // import { useNavigate } from "react-router-dom";

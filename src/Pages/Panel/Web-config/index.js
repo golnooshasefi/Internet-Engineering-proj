@@ -1,4 +1,4 @@
-import classes from "./Webconfig.module.scss";
+import classes from "../Configs.module.scss";
 import { Divider, Typography } from "@mui/material";
 
 import axiosInstance from "../../../axios";

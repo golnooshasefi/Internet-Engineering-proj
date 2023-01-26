@@ -16,21 +16,17 @@ function Panel() {
   console.log(user);
   // return (
   //   <>
-  {
-    /* <Box sx={{ display: "flex" }}>
-        <Dhcpsidebar />
-        <Box
-          component="main"
-          sx={{ flexGrow: 1, bgcolor: "background.default", p: 3 }}
-        >
-          <Outlet />
-        </Box>
-      </Box>
-    </> */
-  }
-
-  // let {userprovider} = UserContextProvider()
-
+  //     <Box sx={{ display: "flex" }}>
+  //       <Dhcpsidebar />
+  //       <Box
+  //         component="main"
+  //         sx={{ flexGrow: 1, bgcolor: "background.default", p: 3 }}
+  //       >
+  //         <Outlet />
+  //       </Box>
+  //     </Box>
+  //   </>
+  // );
   if (user.type === "mail") {
     return (
       <>

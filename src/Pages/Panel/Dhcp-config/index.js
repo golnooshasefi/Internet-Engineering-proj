@@ -1,4 +1,4 @@
-import classes from "./Dhcpconfig.module.scss";
+import classes from "../Configs.module.scss";
 import { Divider, Typography } from "@mui/material";
 import axiosInstance from "../../../axios";
 import { useContext, useState } from "react";
@@ -25,10 +25,10 @@ function Dhcpconfig() {
     e.preventDefault();
     axiosInstance.get(`/accounts/dhcp/start`).then((res) => {
       if (res.status === 200) {
-        if (res.startError === "") {
+        if (res.data.startError === "") {
           setStartSuccessMessage("succesful");
         } else {
-          setStartFailureMessage(res.startError);
+          setStartFailureMessage(res.data.startError);
         }
       } else {
         setStartFailureMessage("Couldn't connect");
@@ -69,17 +69,26 @@ function Dhcpconfig() {
           Start
         </button>
         {startSuccessMeassage && (
-          <div> Your DHCP Server started succesfully!</div>
+          <div className={classes.message}>
+            {" "}
+            Your DHCP Server started succesfully!
+          </div>
         )}
-        {startFailureMessage && <div>An Error Occured!</div>}
+        {startFailureMessage && (
+          <div className={classes.error__message}>An Error Occured!</div>
+        )}
       </div>
       <div className={classes.container__stop}>
         <span>You can click on this button to stop your DHCP Server</span>
         <button className={classes.container__button} onClick={handleStop}>
           Stop
         </button>
-        {stopSuccessMeassage && <div> Your DHCP Server Stoped</div>}
-        {stopFailureMessage && <div>An Error Occured!</div>}
+        {stopSuccessMeassage && (
+          <div className={classes.message}> Your DHCP Server Stoped!</div>
+        )}
+        {stopFailureMessage && (
+          <div className={classes.error__message}>An Error Occured!</div>
+        )}
       </div>
       <div className={classes.container__status}>
         <span>

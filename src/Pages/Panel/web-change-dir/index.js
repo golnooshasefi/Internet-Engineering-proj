@@ -22,8 +22,7 @@ function Webchangedir() {
     useEffect(() => {
       axiosInstance.get(`//`).then((res) => {
         if(res.status === 200) {
-          setCurrentDirectory(res.data.directory) 
-          // ***
+          setCurrentDirectory(res.data.HomeDir) 
         }
         else {
           setErrorCurrentDirectory(true);
@@ -33,16 +32,12 @@ function Webchangedir() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axiosInstance.post(`/accounts/web/submit`, {
-          directory: formData.newDirectory,
-          // ***
+        axiosInstance.post(`//`, {
+          newDirectory: formData.newDirectory,
         }).then((res) => {
           if (res.status === 200) {
-            if (res.data.startError === "") {
+            if (res.data.change_directory === "") {
               setSubmitSuccessMessage("succesful");
-            }
-            else {
-              setSubmitFailureMessage(res.data.startError);
             }
           } else {
             setSubmitFailureMessage("error");
@@ -83,8 +78,8 @@ function Webchangedir() {
 
               </form>
               {submitSuccessMeassage && (
-              <div> Your home directory changed succesfully!</div>
-              )}
+              <div> Your home directory status is: </div>
+              )} {submitSuccessMeassage}
               {submitFailureMessage && <div>An Error Occured!</div>}
               
             </div>

@@ -6,13 +6,13 @@ import { UserContext } from "../../../store/UserContext";
 import { useNavigate } from "react-router-dom";
 
 function Dhcpconfig() {
-  // const context = useContext(UserContext);
-  // const { user } = context;
-  // const navigate = useNavigate();
+  const context = useContext(UserContext);
+  const { user } = context;
+  const navigate = useNavigate();
 
-  // if (user.type === "admin" || user.type === "web" || user.type === "mail") {
-  //   navigate(-1);
-  // }
+  if (user.type !== "dhcp") {
+    navigate("/panel");
+  }
   const [startSuccessMeassage, setStartSuccessMessage] = useState("");
   const [startFailureMessage, setStartFailureMessage] = useState("");
 

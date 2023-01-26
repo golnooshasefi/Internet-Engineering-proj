@@ -7,13 +7,13 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../../store/UserContext";
 
 function Webconfig() {
-  // const context = useContext(UserContext);
-  // const { user } = context;
-  // const navigate = useNavigate();
+  const context = useContext(UserContext);
+  const { user } = context;
+  const navigate = useNavigate();
 
-  // if (user.type === "admin" || user.type === "mail" || user.type === "mail") {
-  //   navigate(-1);
-  // }
+  if (user.type !== "web") {
+    navigate("/panel");
+  }
   const [startSuccessMeassage, setStartSuccessMessage] = useState("");
   const [startFailureMessage, setStartFailureMessage] = useState("");
 
@@ -82,9 +82,7 @@ function Webconfig() {
           Status
         </button>
         <div>
-          {status.map((item) => {
-            return <p>{item.status}</p>;
-          })}
+          <p>{status}</p>
         </div>
       </div>
     </div>

@@ -7,13 +7,13 @@ import { Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 function Mailconfig() {
-  // const context = useContext(UserContext);
-  // const { user } = context;
-  // const navigate = useNavigate();
+  const context = useContext(UserContext);
+  const { user } = context;
+  const navigate = useNavigate();
 
-  // if (user.type === "admin" || user.type === "web" || user.type === "dhcp") {
-  //   navigate(-1);
-  // }
+  if (user.type !== "mail") {
+    navigate("/panel");
+  }
 
   const [startSuccessMeassage, setStartSuccessMessage] = useState("");
   const [startFailureMessage, setStartFailureMessage] = useState("");
@@ -25,17 +25,22 @@ function Mailconfig() {
 
   const handlestart = (e) => {
     e.preventDefault();
-    axiosInstance.get(`/accounts/mail/start`).then((res) => {
-      if (res.status === 200) {
-        if (res.data.startError === "") {
-          setStartSuccessMessage(res.data.startOutput);
+    axiosInstance
+      .get(`/accounts/mail/start`)
+      .then((res) => {
+        if (res.status === 200) {
+          if (res.data.startError === "") {
+            setStartSuccessMessage(res.data.startOutput);
+          } else {
+            setStartFailureMessage("error");
+          }
         } else {
           setStartFailureMessage("error");
         }
-      } else {
+      })
+      .catch(() => {
         setStartFailureMessage("error");
-      }
-    });
+      });
   };
 
   const handlestop = (e) => {
@@ -94,9 +99,8 @@ function Mailconfig() {
           Status
         </button>
         <div>
-          {status.map((item) => {
-            return <p>{item.status}</p>;
-          })}
+          {/* {status.map((item) => { */}
+          <p>{status}</p>
         </div>
       </div>
     </div>

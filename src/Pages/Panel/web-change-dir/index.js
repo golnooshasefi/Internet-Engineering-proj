@@ -1,21 +1,48 @@
 import classes from "./Webchangedir.module.scss";
-import { Divider, Typography } from "@mui/material";
+import { TextField, Typography } from "@mui/material";
 import axiosInstance from "../../../axios";
 import { useState, useEffect } from "react";
 
 function Webchangedir() {
     const [submitSuccessMeassage, setSubmitSuccessMessage] = useState("");
     const [submitFailureMessage, setSubmitFailureMessage] = useState("");
+    const [currentDirectory, setCurrentDirectory] = useState("");
+    const [errorCurrentDirectory, setErrorCurrentDirectory] = useState(false);
+    const [formData, updateFormData] = useState({
+      newDirectory : "",
+    });
+
+    const handleChange = (e) => {
+      updateFormData({
+        ...formData,
+        [e.target.name]: e.target.value.trim(),
+      });
+    };
+
+    useEffect(() => {
+      axiosInstance.get(`//`).then((res) => {
+        if(res.status === 200) {
+          setCurrentDirectory(res.data.directory) 
+          // ***
+        }
+        else {
+          setErrorCurrentDirectory(true);
+        }
+      });
+    }, []);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axiosInstance.post(`/accounts/web/submit`).then((res) => {
+        axiosInstance.post(`/accounts/web/submit`, {
+          directory: formData.newDirectory,
+          // ***
+        }).then((res) => {
           if (res.status === 200) {
-            if (res.startError === "") {
+            if (res.data.startError === "") {
               setSubmitSuccessMessage("succesful");
             }
             else {
-              setSubmitFailureMessage(res.startError);
+              setSubmitFailureMessage(res.data.startError);
             }
           } else {
             setSubmitFailureMessage("error");
@@ -29,21 +56,40 @@ function Webchangedir() {
             </Typography>
             <div className={classes.container__start}>
                 <span>Your current Web Server home directory is:&nbsp; </span>
-                <i>Ubuntu/server/webserver</i>
+                <i><u>{currentDirectory}</u></i>
+                {errorCurrentDirectory && <div>An error occurred</div>}
             </div>
-            <div className={classes.container__stop}>
-                <span>You can type some directory to change your Web Server home directory&nbsp;</span>
-                <input className={classes.container__input} type="text"></input>
-                <button className={classes.container__submit} onClick={handleSubmit}>
-                Submit
-                </button>
-                {submitSuccessMeassage && (
-                <div> Your home directory changed succesfully!</div>
-                )}
-                {submitFailureMessage && <div>An Error Occured!</div>}
+            <p>You can type some directory to change your Web Server home directory</p>
+            <form className={classes.form} onSubmit={handleSubmit}>
+              <div>
+                <span>
+                  <TextField
+                    sx={{
+                      width: { sm: 400 },
+                      "& .MuiInputBase-root": {
+                        height: 52,
+                      },
+                    }}
+                    value={formData.newDirectory}
+                    onChange={handleChange}
+                    name="newDirectory"
+                    id="outlined-basic"
+                    variant="outlined"
+                    type="text"
+                  />
+                </span>
+                <input type="submit" value="Submit" className={classes.submitbtn} />
+              </div>
+
+              </form>
+              {submitSuccessMeassage && (
+              <div> Your home directory changed succesfully!</div>
+              )}
+              {submitFailureMessage && <div>An Error Occured!</div>}
+              
             </div>
             
-        </div>
+        
     );
 }
 

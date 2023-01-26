@@ -32,15 +32,12 @@ function Iprange() {
       })
       .then((res) => {
         if(res.status === 200){
-          setResponse(res.change_range);
+          setResponse(res.data.change_range);
         }
       })
       .catch((err) => {
-        if(err.response) {
-          setResponse(err.response.data);
-        }
-        else if(err.request) {
-          setResponse(err.request);
+        if(err.status === 406) {
+          setResponse(err.data.change_range);
         }
         else {
           setResponse("An error occurred.");
@@ -106,7 +103,7 @@ function Iprange() {
                 }}
               />
             </span>
-            <div className={classes.status}>{response && <span>Your mail status is: </span>}{response}</div>
+            <div className={classes.status}>{response && <span>Your mail status is: {response}</span>}</div>
           </div>
           <input type="submit" value="Submit" className={classes.submitbtn} />
         </form>

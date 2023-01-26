@@ -34,10 +34,20 @@ function Iprange() {
         if(res.status === 200){
           setResponse(res.change_range);
         }
+      })
+      .catch((err) => {
+        if(err.response) {
+          setResponse(err.response.data);
+        }
+        else if(err.request) {
+          setResponse(err.request);
+        }
         else {
           setResponse("An error occurred.");
         }
-      });
+      }
+
+      );
   };
 
   return (

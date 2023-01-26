@@ -7,7 +7,9 @@ import { useState } from "react";
 function Iprange() {
   // const [startip, setStartip] = useState("");
   // const [endip, setEndip] = useState("");
-  const [success, setSuccess] = useState(false);
+  // const [emptyStartIp, setEmptyStartIp] = useState(false);
+  // const [emptyEndIp, setEmptyEndIp] = useState(false);
+  const [response, setResponse] = useState(false);
   const [formData, updateFormData] = useState({
     startip: "",
     endip: "",
@@ -21,15 +23,20 @@ function Iprange() {
   };
 
   const handleSubmit = (e) => {
-    setSuccess(false);
+    setResponse(false);
     e.preventDefault();
     axiosInstance
       .post("", {
         startip: formData.startip,
         endip: formData.endip,
       })
-      .then(() => {
-        setSuccess(true);
+      .then((res) => {
+        if(res.status === 200){
+          setResponse(res.change_range);
+        }
+        else {
+          setResponse("An error occurred.");
+        }
       });
   };
 
@@ -49,9 +56,9 @@ function Iprange() {
               from 192.168.100.
               <TextField
                 sx={{
-                  width: { sm: 50 },
+                  width: { sm: 60 },
                   "& .MuiInputBase-root": {
-                    height: 40,
+                    height: 25,
                   },
                 }}
                 value={formData.startip}
@@ -60,15 +67,20 @@ function Iprange() {
                 variant="outlined"
                 onChange={handleChange}
                 type="text"
+                onKeyPress={(event) => {
+                  if (!/[0-9]/.test(event.key)) {
+                    event.preventDefault();
+                  }
+                }}  
               />
             </span>
             <span>
               to 192.168.100.
               <TextField
                 sx={{
-                  width: { sm: 50 },
+                  width: { sm: 60 },
                   "& .MuiInputBase-root": {
-                    height: 40,
+                    height: 25,
                   },
                 }}
                 value={formData.endip}
@@ -77,13 +89,17 @@ function Iprange() {
                 variant="outlined"
                 onChange={handleChange}
                 type="text"
+                onKeyPress={(event) => {
+                  if (!/[0-9]/.test(event.key)) {
+                    event.preventDefault();
+                  }
+                }}
               />
             </span>
+            <div className={classes.status}>{response && <span>Your mail status is: </span>}{response}</div>
           </div>
-
           <input type="submit" value="Submit" className={classes.submitbtn} />
         </form>
-        {success && <div> Suucessfuly Changed!</div>}
       </div>
     </div>
   );

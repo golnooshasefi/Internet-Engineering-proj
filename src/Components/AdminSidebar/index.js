@@ -52,7 +52,7 @@ function Adminsidebar() {
               sx={{ bgcolor: teal[500] }}
               className={classes.container__form_Avatar}
             ></Avatar>
-            {/* <div className={classes["user-info__title"]}>{user.username}</div> */}
+
             <div className={classes["user-info__title"]}>{user.username}</div>
           </div>
         </div>
@@ -62,7 +62,6 @@ function Adminsidebar() {
 
       <Divider />
       <List>
-        {/* {["All mail", "Trash", "Spam"].map((text, index) => ( */}
         <Link to="logs" className={classes.link}>
           <ListItem disablePadding>
             <ListItemButton>
@@ -128,10 +127,8 @@ function Adminsidebar() {
             </ListItemButton>
           </ListItem>
         </Link>
-        {/* ))} */}
       </List>
     </Drawer>
-    // </Box>
   );
 }
 

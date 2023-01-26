@@ -4,6 +4,7 @@ import { UserContext } from "../../store/UserContext";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
+import FormControl from "@mui/material/FormControl";
 import {
   Button,
   IconButton,
@@ -20,11 +21,6 @@ import classes from "./Login.module.scss";
 import { teal } from "@mui/material/colors";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 
-// const initialFormData = {
-//   email: "",
-//   password: "",
-// };
-
 function Login(props) {
   const [showPassword, setShowPassword] = React.useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -36,7 +32,7 @@ function Login(props) {
   const navigate = useNavigate();
 
   const [formData, updateFormData] = useState({
-    email: "",
+    username: "",
     password: "",
   });
 
@@ -90,41 +86,43 @@ function Login(props) {
               label="Username"
               variant="outlined"
               name="username"
-              sx={{ mt: 2 }}
+              sx={{ mt: 2, mb: 3 }}
             />
 
-            {/* <InputLabel htmlFor="outlined-adornment-password">
-              Password
-            </InputLabel>
-            <OutlinedInput
-              id="outlined-adornment-password"
-              type={showPassword ? "text" : "password"}
-              value={formData.password}
-              onChange={handleChange}
-              endAdornment={
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label="toggle password visibility"
-                    onClick={handleClickShowPassword}
-                    onMouseDown={handleMouseDownPassword}
-                    edge="end"
-                  >
-                    {showPassword ? <VisibilityOff /> : <Visibility />}
-                  </IconButton>
-                </InputAdornment>
-              }
-              label="Password"
-            /> */}
+            <FormControl variant="outlined">
+              <InputLabel htmlFor="password">Password</InputLabel>
+              <OutlinedInput
+                id="password"
+                type={showPassword ? "text" : "password"}
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                      edge="end"
+                    >
+                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                }
+                label="Password"
+              />
+            </FormControl>
 
-            <TextField
+            {/* <TextField
               value={formData.password}
               onChange={handleChange}
               label="Password"
+              type="password"
               variant="outlined"
               id="password"
               name="password"
               sx={{ mt: 2, mb: 1 }}
-            />
+            /> */}
 
             <div className={classes.container__form__btndiv}>
               <Button
@@ -140,10 +138,7 @@ function Login(props) {
           </form>
 
           <Link to="/register" className={classes.link}>
-            <Button
-              // onClick={() => props.onFormSwitch("register")}
-              variant="text"
-            >
+            <Button variant="text" className={classes.link__button}>
               Don't have an accout? Register here
             </Button>
           </Link>

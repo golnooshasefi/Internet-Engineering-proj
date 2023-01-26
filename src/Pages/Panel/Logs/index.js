@@ -4,7 +4,6 @@ import { useState } from "react";
 
 import axiosInstance from "../../../axios";
 import classes from "./Logs.module.scss";
-import data from "../../../data.json";
 function Logs() {
   let [logs, setLogs] = useState([]);
 

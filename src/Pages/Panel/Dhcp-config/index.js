@@ -22,7 +22,7 @@ function Dhcpconfig() {
           setStartFailureMessage(res.startError);
         }
       } else {
-        setStartFailureMessage("error");
+        setStartFailureMessage("Couldn't connect");
       }
     });
   };
@@ -31,13 +31,13 @@ function Dhcpconfig() {
     e.preventDefault();
     axiosInstance.get(`/accounts/dhcp/stop`).then((res) => {
       if (res.status === 200) {
-        if (res.stopError === "") {
+        if (res.data.stopError === "") {
           setStopSuccessMessage("succesful");
         } else {
-          setStopFailureMessage(res.stopError);
+          setStopFailureMessage(res.data.stopError);
         }
       } else {
-        setStopFailureMessage("error");
+        setStopFailureMessage("Couldn't connect");
       }
     });
   };
@@ -45,7 +45,7 @@ function Dhcpconfig() {
   const getStatus = () => {
     axiosInstance.get(`/accounts/dhcp/status`).then((res) => {
       if (res.status === 200) {
-        setStatus(res);
+        setStatus(res.data);
       }
     });
   };
@@ -81,9 +81,9 @@ function Dhcpconfig() {
           Status
         </button>
         <div>
-          {status.map((item) => {
-            return <p>{item.status}</p>;
-          })}
+          {/* {status.map((item) => { */}
+          <p>{status}</p>
+          {/* })} */}
         </div>
       </div>
     </div>

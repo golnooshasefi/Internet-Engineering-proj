@@ -180,7 +180,7 @@ function Register(props) {
                 className="container__form__submitbtn"
                 type="submit"
                 variant="outlined"
-                sx={{ mt: 5, mb: 3 }}
+                sx={{ mt: 3, mb: 2 }}
                 onClick={handleSumbit}
               >
                 Sign Up
@@ -188,7 +188,9 @@ function Register(props) {
             </div>
           </form>
           <Link to="/login" className={classes.link}>
-            <Button variant="text">Already have an accout? Login here</Button>
+            <Button variant="text" className={classes.link__button}>
+              Already have an accout? Login here
+            </Button>
           </Link>
         </div>
       </div>

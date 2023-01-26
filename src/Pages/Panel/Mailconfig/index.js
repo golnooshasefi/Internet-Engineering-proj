@@ -21,7 +21,11 @@ function Mailconfig() {
     e.preventDefault();
     axiosInstance.get(`/accounts/mail/start`).then((res) => {
       if (res.status === 200) {
-        setStartSuccessMessage("succesful");
+        if (res.data.startError === "") {
+          setStartSuccessMessage(res.data.startOutput);
+        } else {
+          setStartFailureMessage("error");
+        }
       } else {
         setStartFailureMessage("error");
       }
@@ -32,7 +36,11 @@ function Mailconfig() {
     e.preventDefault();
     axiosInstance.get(`/accounts/mail/stop`).then((res) => {
       if (res.status === 200) {
-        setStopSuccessMessage("succesful");
+        if (res.data.stopError === "") {
+          setStopSuccessMessage(res.data.stopOutput);
+        } else {
+          setStopFailureMessage("error");
+        }
       } else {
         setStopFailureMessage("error");
       }
@@ -42,7 +50,7 @@ function Mailconfig() {
   const getStatus = () => {
     axiosInstance.get(`/accounts/mail/status`).then((res) => {
       if (res.status === 200) {
-        setStatus(res);
+        setStatus(res.data);
       }
     });
   };

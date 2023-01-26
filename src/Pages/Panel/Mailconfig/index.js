@@ -45,17 +45,22 @@ function Mailconfig() {
 
   const handlestop = (e) => {
     e.preventDefault();
-    axiosInstance.get(`/accounts/mail/stop`).then((res) => {
-      if (res.status === 200) {
-        if (res.data.stopError === "") {
-          setStopSuccessMessage(res.data.stopOutput);
+    axiosInstance
+      .get(`/accounts/mail/stop`)
+      .then((res) => {
+        if (res.status === 200) {
+          if (res.data.stopError === "") {
+            setStopSuccessMessage(res.data.stopOutput);
+          } else {
+            setStopFailureMessage("error");
+          }
         } else {
           setStopFailureMessage("error");
         }
-      } else {
+      })
+      .catch(() => {
         setStopFailureMessage("error");
-      }
-    });
+      });
   };
 
   const getStatus = () => {

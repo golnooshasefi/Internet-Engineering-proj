@@ -13,13 +13,13 @@ function Iprange() {
   // const [emptyEndIp, setEmptyEndIp] = useState(false);
   const [response, setResponse] = useState(false);
 
-  // const context = useContext(UserContext);
-  // const { user } = context;
-  // const navigate = useNavigate();
+  const context = useContext(UserContext);
+  const { user } = context;
+  const navigate = useNavigate();
 
-  // if (user.type === "admin" || user.type === "web" || user.type === "mail") {
-  //   navigate(-1);
-  // }
+  if (user.type !== "dhcp") {
+    navigate("/panel");
+  }
   const [success, setSuccess] = useState(false);
   const [formData, updateFormData] = useState({
     startip: "",
@@ -38,9 +38,7 @@ function Iprange() {
     e.preventDefault();
     axiosInstance
 
-
       .post(`/accounts/dhcp/changeIpRange/`, {
-
         startip: formData.startip,
         endip: formData.endip,
       })

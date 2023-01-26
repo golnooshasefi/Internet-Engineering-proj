@@ -22,27 +22,38 @@ function Webconfig() {
 
   const [status, setStatus] = useState([]);
 
-  const handleStop = (e) => {
-    e.preventDefault();
-    axiosInstance.get(`/accounts/web/stop`).then((res) => {
-      if (res.status === 200) {
-        setStopSuccessMessage("succesful");
-      } else {
-        setStopFailureMessage("error");
-      }
-    });
-  };
-
   const handleStart = (e) => {
     e.preventDefault();
-    axiosInstance.get(`/accounts/web/start/`).then((res) => {
-      if (res.status === 200) {
-        setStartSuccessMessage("succesful");
-      } else {
+    axiosInstance
+      .get(`/accounts/web/start/`)
+      .then((res) => {
+        if (res.status === 200) {
+          setStartSuccessMessage("succesful");
+        } else {
+          setStartFailureMessage("error");
+        }
+      })
+      .catch(() => {
         setStartFailureMessage("error");
-      }
-    });
+      });
   };
+
+  const handleStop = (e) => {
+    e.preventDefault();
+    axiosInstance
+      .get(`/accounts/web/stop`)
+      .then((res) => {
+        if (res.status === 200) {
+          setStopSuccessMessage("succesful");
+        } else {
+          setStopFailureMessage("error");
+        }
+      })
+      .catch(() => {
+        setStopFailureMessage("error");
+      });
+  };
+
   const getStatus = () => {
     axiosInstance.get(`accounts/web/status/`).then((res) => {
       if (res.status === 200) {

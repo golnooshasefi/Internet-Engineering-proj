@@ -15,7 +15,7 @@
 }
 
 .Header {
-  background-image: linear-gradient(to right, #62B6B7, #376664);
+  background-image: linear-gradient(to right, #62b6b7, #376664);
   background-clip: text;
   -webkit-text-fill-color: transparent;
   font-size: 4.5rem;
@@ -28,14 +28,14 @@
   color: #1d3536;
 }
 
-.ButtonRight {  
+.ButtonRight {
   margin-left: 0rem;
   padding: 1rem 2rem;
   width: 15rem;
   height: 3rem;
   margin-right: 1rem;
   margin-bottom: 1rem;
-  background-image: linear-gradient(to right bottom, #62B6B7, #62B6B7);
+  background-image: linear-gradient(to right bottom, #62b6b7, #62b6b7);
   transition: all 0.5s;
   text-align: center;
   position: relative;
@@ -68,6 +68,7 @@
 .ButtonLeft {
   width: 15rem;
   height: 3rem;
+  // font-size: 1.5rem;
   padding: 1rem 2rem;
   transition: all 0.5s;
   text-align: center;

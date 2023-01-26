@@ -12,18 +12,27 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 
 import MailIcon from "@mui/icons-material/Mail";
 import DnsIcon from "@mui/icons-material/Dns";
+import LogoutIcon from "@mui/icons-material/Logout";
+
 import { AppBar, Avatar, Typography } from "@mui/material";
 import { teal } from "@mui/material/colors";
 
 import classes from "../Shared/Sidebar.module.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../../store/UserContext";
 
 const drawerWidth = 260;
 function Mailsidebar() {
   const context = useContext(UserContext);
-  const { user } = context;
+  const { user, logout } = context;
+  const navigate = useNavigate();
+
+  function logouthandler() {
+    logout();
+    navigate("/");
+  }
+
   return (
     <Drawer
       sx={{
@@ -60,7 +69,7 @@ function Mailsidebar() {
 
       <Divider />
       <List>
-      <Link to="logs" className={classes.link}>
+        <Link to="logs" className={classes.link}>
           <ListItem disablePadding>
             <ListItemButton>
               <ListItemIcon>
@@ -81,6 +90,15 @@ function Mailsidebar() {
             </ListItemButton>
           </ListItem>
         </Link>
+
+        <ListItem disablePadding>
+          <ListItemButton onClickCapture={logouthandler}>
+            <ListItemIcon>
+              <LogoutIcon />
+            </ListItemIcon>
+            Logout
+          </ListItemButton>
+        </ListItem>
       </List>
     </Drawer>
     // </Box>

@@ -26,7 +26,7 @@ function Iprange() {
     setResponse(false);
     e.preventDefault();
     axiosInstance
-      .post("", {
+      .post(`/dhcp/changeIpRange/`, {
         startip: formData.startip,
         endip: formData.endip,
       })

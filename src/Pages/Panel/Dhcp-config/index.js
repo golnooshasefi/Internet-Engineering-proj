@@ -1,9 +1,18 @@
 import classes from "./Dhcpconfig.module.scss";
 import { Divider, Typography } from "@mui/material";
 import axiosInstance from "../../../axios";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { UserContext } from "../../../store/UserContext";
+import { useNavigate } from "react-router-dom";
 
 function Dhcpconfig() {
+  // const context = useContext(UserContext);
+  // const { user } = context;
+  // const navigate = useNavigate();
+
+  // if (user.type === "admin" || user.type === "web" || user.type === "mail") {
+  //   navigate(-1);
+  // }
   const [startSuccessMeassage, setStartSuccessMessage] = useState("");
   const [startFailureMessage, setStartFailureMessage] = useState("");
 
@@ -12,41 +21,40 @@ function Dhcpconfig() {
 
   const [status, setStatus] = useState([]);
 
-  const handleStop = (e) => {
+  const handleStart = (e) => {
     e.preventDefault();
-    axiosInstance.post(`/accounts/dhcp/stop`).then((res) => {
+    axiosInstance.get(`/accounts/dhcp/start`).then((res) => {
       if (res.status === 200) {
-        if(res.stopError === "") {
-          setStopSuccessMessage("succesful");
-        }
-        else {
-          setStopFailureMessage(res.stopError);
+        if (res.startError === "") {
+          setStartSuccessMessage("succesful");
+        } else {
+          setStartFailureMessage(res.startError);
         }
       } else {
-        setStopFailureMessage("error");
+        setStartFailureMessage("Couldn't connect");
       }
     });
   };
 
-  const handleStart = (e) => {
+  const handleStop = (e) => {
     e.preventDefault();
-    axiosInstance.post(`/accounts/dhcp/start`).then((res) => {
+    axiosInstance.get(`/accounts/dhcp/stop`).then((res) => {
       if (res.status === 200) {
-        if (res.startError === "") {
-          setStartSuccessMessage("succesful");
-        }
-        else {
-          setStartFailureMessage(res.startError);
+        if (res.data.stopError === "") {
+          setStopSuccessMessage("succesful");
+        } else {
+          setStopFailureMessage(res.data.stopError);
         }
       } else {
-        setStartFailureMessage("error");
+        setStopFailureMessage("Couldn't connect");
       }
     });
   };
+
   const getStatus = () => {
     axiosInstance.get(`/accounts/dhcp/status`).then((res) => {
       if (res.status === 200) {
-        setStatus(res);
+        setStatus(res.data);
       }
     });
   };
@@ -82,9 +90,9 @@ function Dhcpconfig() {
           Status
         </button>
         <div>
-          {status.map((item) => {
-            return <p>{item.status}</p>;
-          })}
+          {/* {status.map((item) => { */}
+          <p>{status}</p>
+          {/* })} */}
         </div>
       </div>
     </div>

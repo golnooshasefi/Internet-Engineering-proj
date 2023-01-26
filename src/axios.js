@@ -1,12 +1,15 @@
 import axios from "axios";
-const baseUrl = "http://127.0.0.1:8000/"; //change URL
+const baseUrl = "";
 
 const axiosInstance = axios.create({
   baseURL: baseUrl,
   headers: {
-    Authorization: localStorage.getItem("access_token")
-      ? "Bearer " + localStorage.getItem("access_token")
-      : null,
+    Authorization:
+      localStorage.getItem("access_token") !== null &&
+      localStorage.getItem("access_token") !== undefined &&
+      localStorage.getItem("access_toen") !== "undefined"
+        ? "Bearer " + localStorage.getItem("access_token")
+        : null,
     "Content-Type": "application/json",
     accept: "application/json",
   },

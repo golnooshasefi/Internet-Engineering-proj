@@ -1,4 +1,13 @@
-import { TextField, Typography, Avatar, Button } from "@mui/material";
+import {
+  TextField,
+  Typography,
+  Avatar,
+  Button,
+  InputAdornment,
+  IconButton,
+  InputLabel,
+  OutlinedInput,
+} from "@mui/material";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -12,8 +21,14 @@ import { Link, useNavigate } from "react-router-dom";
 import axiosInstance from "../../axios";
 import classes from "./Register.module.scss";
 import { UserContext } from "../../store/UserContext";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 function Register(props) {
+  const [showPassword, setShowPassword] = React.useState(false);
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
   const navigate = useNavigate();
   const initialFormData = {
     username: "",
@@ -43,6 +58,12 @@ function Register(props) {
   };
   const handleSumbit = (e) => {
     e.preventDefault();
+    console.log(
+      formData.email,
+      formData.username,
+      formData.type,
+      formData.password
+    );
     axiosInstance
       .post(`accounts/register/`, {
         username: formData.username,
@@ -104,7 +125,7 @@ function Register(props) {
               variant="outlined"
               sx={{ mb: 2 }}
             />
-            <TextField
+            {/* <TextField
               type="password"
               value={formData.password}
               onChange={handleChange}
@@ -113,19 +134,43 @@ function Register(props) {
               variant="outlined"
               label="Password"
               sx={{ mb: 2 }}
-            />
+            /> */}
+            <FormControl variant="outlined">
+              <InputLabel htmlFor="password">Password</InputLabel>
+              <OutlinedInput
+                id="password"
+                type={showPassword ? "text" : "password"}
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                      edge="end"
+                    >
+                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                }
+                label="Password"
+                sx={{ mb: 3 }}
+              />
+            </FormControl>
             <FormControl>
               <FormLabel id="user-type">Select your type</FormLabel>
               <RadioGroup
                 row
                 aria-labelledby="user-type"
-                defaultValue="DHCP"
+                defaultValue="dhcp"
                 name="radio-buttons-group"
                 value={formData.type}
                 onChange={handleBtnChange}
               >
                 <FormControlLabel
-                  value="DHCP"
+                  value="dhcp"
                   name="type"
                   control={
                     <Radio
@@ -140,7 +185,7 @@ function Register(props) {
                   label="DHCP"
                 />
                 <FormControlLabel
-                  value="Mail"
+                  value="mail"
                   name="type"
                   control={
                     <Radio
@@ -155,7 +200,7 @@ function Register(props) {
                   label="Mail "
                 />
                 <FormControlLabel
-                  value="Web"
+                  value="web"
                   name="type"
                   control={
                     <Radio
@@ -176,7 +221,7 @@ function Register(props) {
                 className="container__form__submitbtn"
                 type="submit"
                 variant="outlined"
-                sx={{ mt: 5, mb: 3 }}
+                sx={{ mt: 3, mb: 2 }}
                 onClick={handleSumbit}
               >
                 Sign Up
@@ -184,7 +229,9 @@ function Register(props) {
             </div>
           </form>
           <Link to="/login" className={classes.link}>
-            <Button variant="text">Already have an accout? Login here</Button>
+            <Button variant="text" className={classes.link__button}>
+              Already have an accout? Login here
+            </Button>
           </Link>
         </div>
       </div>

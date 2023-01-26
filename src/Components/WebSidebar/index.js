@@ -52,7 +52,6 @@ function Websidebar() {
               className={classes.container__form_Avatar}
             ></Avatar>
             <div className={classes["user-info__title"]}>{user.username}</div>
-            {/* <div className={classes["user-info__title"]}>Golnoosh</div> */}
           </div>
         </div>
       </div>

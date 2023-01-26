@@ -5,23 +5,20 @@
   cursor: pointer;
 
   &--green {
-    font-size: 1.5rem;
-    font-weight: bold;
+    // font-size: 1.2rem;
+    // font-weight: bold;
     padding: 0 3rem;
-    background-color: rgb(102, 104, 171);
+    // background-color: rgb(102, 104, 171);
     color: #fff;
     transition: 0.3s;
-    &:hover {
-      background-color: rgba(102, 104, 171, 0.8);
-    }
   }
   &--white {
-    font-size: 1.5rem;
-    font-weight: bold;
-    padding: 1rem 2rem;
+    // font-size: 1rem;
+    // font-weight: bold;
+    padding: 0rem 3rem;
     background-color: #fff;
-    color: #62B6B7;
-    border: 1px solid #62B6B7;
+    color: #62b6b7;
+    border: 1px solid #62b6b7;
     transition: 0.3s;
   }
 }

@@ -23,32 +23,42 @@ function Dhcpconfig() {
 
   const handleStart = (e) => {
     e.preventDefault();
-    axiosInstance.get(`/accounts/dhcp/start`).then((res) => {
-      if (res.status === 200) {
-        if (res.data.startError === "") {
-          setStartSuccessMessage("succesful");
+    axiosInstance
+      .get(`/accounts/dhcp/start`)
+      .then((res) => {
+        if (res.status === 200) {
+          if (res.data.startError === "") {
+            setStartSuccessMessage("succesful");
+          } else {
+            setStartFailureMessage(res.data.startError);
+          }
         } else {
-          setStartFailureMessage(res.data.startError);
+          setStartFailureMessage("Couldn't connect");
         }
-      } else {
-        setStartFailureMessage("Couldn't connect");
-      }
-    });
+      })
+      .catch(() => {
+        setStartFailureMessage("error");
+      });
   };
 
   const handleStop = (e) => {
     e.preventDefault();
-    axiosInstance.get(`/accounts/dhcp/stop`).then((res) => {
-      if (res.status === 200) {
-        if (res.data.stopError === "") {
-          setStopSuccessMessage("succesful");
+    axiosInstance
+      .get(`/accounts/dhcp/stop`)
+      .then((res) => {
+        if (res.status === 200) {
+          if (res.data.stopError === "") {
+            setStopSuccessMessage("succesful");
+          } else {
+            setStopFailureMessage(res.data.stopError);
+          }
         } else {
-          setStopFailureMessage(res.data.stopError);
+          setStopFailureMessage("Couldn't connect");
         }
-      } else {
-        setStopFailureMessage("Couldn't connect");
-      }
-    });
+      })
+      .catch(() => {
+        setStopFailureMessage("error");
+      });
   };
 
   const getStatus = () => {

@@ -12,6 +12,8 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import MailIcon from "@mui/icons-material/Mail";
 import DnsIcon from "@mui/icons-material/Dns";
 import SettingsIcon from "@mui/icons-material/Settings";
+import LogoutIcon from "@mui/icons-material/Logout";
+
 import BuildIcon from "@mui/icons-material/Build";
 import { Avatar, Typography } from "@mui/material";
 import { teal } from "@mui/material/colors";
@@ -19,12 +21,18 @@ import { teal } from "@mui/material/colors";
 import classes from "../Shared/Sidebar.module.scss";
 import { UserContext } from "../../store/UserContext";
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const drawerWidth = 260;
 function Adminsidebar() {
   const context = useContext(UserContext);
-  const { user } = context;
+  const { user, logout } = context;
+  const navigate = useNavigate();
+
+  function logouthandler() {
+    logout();
+    navigate("/");
+  }
 
   return (
     <Drawer
@@ -127,6 +135,15 @@ function Adminsidebar() {
             </ListItemButton>
           </ListItem>
         </Link>
+
+        <ListItem disablePadding>
+          <ListItemButton onClickCapture={logouthandler}>
+            <ListItemIcon>
+              <LogoutIcon />
+            </ListItemIcon>
+            Logout
+          </ListItemButton>
+        </ListItem>
       </List>
     </Drawer>
   );

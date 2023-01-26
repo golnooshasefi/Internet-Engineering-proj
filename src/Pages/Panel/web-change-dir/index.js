@@ -20,13 +20,16 @@ function Webchangedir() {
     };
 
     useEffect(() => {
-      axiosInstance.get(`//`).then((res) => {
+      axiosInstance.get(`/ConfigGetHomeDir/`).then((res) => {
         if(res.status === 200) {
           setCurrentDirectory(res.data.HomeDir) 
         }
         else {
           setErrorCurrentDirectory(true);
         }
+      })
+      .catch((err) => {
+        setErrorCurrentDirectory(true);
       });
     }, []);
 

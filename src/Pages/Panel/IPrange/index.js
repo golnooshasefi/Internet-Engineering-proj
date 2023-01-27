@@ -48,7 +48,7 @@ function Iprange() {
         }
       })
       .catch((err) => {
-        if (err.status === 406) {
+        if (err.status === 400) {
           setResponse(err.data.change_range);
         } else {
           setResponse("An error occurred.");
@@ -113,7 +113,7 @@ function Iprange() {
               />
             </span>
             <div className={classes.status}>
-              {response && <span>Your mail status is: {response}</span>}
+              {response && <span>Your DHCP status is: {response}</span>}
             </div>
           </div>
           <input type="submit" value="Submit" className={classes.submitbtn} />

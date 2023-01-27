@@ -40,3 +40,13 @@
     color: #ff2c2c;
   }
 }
+
+.messagecontainer {
+  padding: 0.8rem;
+  background-color: #acdab7;
+  text-align: center;
+  border-radius: 1rem;
+  &__success {
+    color: #4c9a2a;
+  }
+}

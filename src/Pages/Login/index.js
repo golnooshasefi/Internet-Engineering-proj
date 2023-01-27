@@ -36,6 +36,8 @@ function Login(props) {
     password: "",
   });
 
+  const [hasLoginError, setHasLoginError] = useState(false);
+
   const handleChange = (e) => {
     updateFormData({
       ...formData,
@@ -59,6 +61,11 @@ function Login(props) {
           axiosInstance.defaults.headers["Authorization"] =
             "Bearer " + localStorage.getItem("access_token");
           navigate("/panel");
+        }
+      })
+      .catch((error) => {
+        if (error.status === 401) {
+          setHasLoginError(true);
         }
       });
   };
@@ -136,7 +143,13 @@ function Login(props) {
               </Button>
             </div>
           </form>
-
+          {hasLoginError && (
+            <div className={classes.errorcontainer}>
+              <div className={classes.errorcontainer__message}>
+                Login failed. Your username or password are incorrect.
+              </div>
+            </div>
+          )}
           <Link to="/register" className={classes.link}>
             <Button variant="text" className={classes.link__button}>
               Don't have an accout? Register here

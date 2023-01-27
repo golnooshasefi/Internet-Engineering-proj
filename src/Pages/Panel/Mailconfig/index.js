@@ -11,7 +11,7 @@ function Mailconfig() {
   const { user } = context;
   const navigate = useNavigate();
 
-  if (user.type !== "mail") {
+  if (user.type !== "mail" && user.type !== "admin") {
     navigate("/panel");
   }
 
@@ -21,7 +21,7 @@ function Mailconfig() {
   const [stopSuccessMeassage, setStopSuccessMessage] = useState("");
   const [stopFailureMessage, setStopFailureMessage] = useState("");
 
-  const [status, setStatus] = useState([]);
+  const [status, setStatus] = useState(null);
 
   const handlestart = (e) => {
     e.preventDefault();
@@ -64,6 +64,7 @@ function Mailconfig() {
   };
 
   const getStatus = () => {
+    setStatus(null);
     axiosInstance.get(`/accounts/mail/status`).then((res) => {
       if (res.status === 200) {
         setStatus(res.data);
@@ -92,8 +93,12 @@ function Mailconfig() {
         <button className={classes.container__button} onClick={handlestop}>
           Stop
         </button>
-        {stopSuccessMeassage && <div> Your Mail Server Stoped</div>}
-        {stopFailureMessage && <div>An Error Occured!</div>}
+        {stopSuccessMeassage && (
+          <div className={classes.message}> Your Mail Server Stoped</div>
+        )}
+        {stopFailureMessage && (
+          <div className={classes.error__message}>An Error Occured!</div>
+        )}
       </div>
 
       <div className={classes.container__status}>
@@ -103,12 +108,16 @@ function Mailconfig() {
         <button className={classes.container__button} onClick={getStatus}>
           Status
         </button>
+      </div>
+      {status && (
         <div className={classes.containercode}>
           <code className={classes.containercode__codeBox}>
-            <div className={classes.status}>{status}</div>
+            <div className={classes.status}>
+              {JSON.stringify(status, null, 2)}
+            </div>
           </code>
         </div>
-      </div>
+      )}
     </div>
   );
 }

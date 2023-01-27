@@ -17,9 +17,9 @@ function Iprange() {
   const { user } = context;
   const navigate = useNavigate();
 
-  if (user.type !== "dhcp") {
-    navigate("/panel");
-  }
+  // if (user.type !== "dhcp") {
+  //   navigate("/panel");
+  // }
   const [success, setSuccess] = useState(false);
   const [formData, updateFormData] = useState({
     startip: "",

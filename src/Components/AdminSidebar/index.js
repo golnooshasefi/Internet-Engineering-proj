@@ -8,7 +8,7 @@ import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
-
+import FolderOpenIcon from "@mui/icons-material/FolderOpen";
 import MailIcon from "@mui/icons-material/Mail";
 import DnsIcon from "@mui/icons-material/Dns";
 import SettingsIcon from "@mui/icons-material/Settings";
@@ -23,7 +23,7 @@ import { UserContext } from "../../store/UserContext";
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-const drawerWidth = 260;
+const drawerWidth = 280;
 function Adminsidebar() {
   const context = useContext(UserContext);
   const { user, logout } = context;
@@ -103,6 +103,7 @@ function Adminsidebar() {
           </ListItem>
         </Link>
 
+        <Divider sx={{ mt: 1, mb: 1 }} />
         <Link to="web-config" className={classes.link}>
           <ListItem disablePadding>
             <ListItemButton>
@@ -118,12 +119,14 @@ function Adminsidebar() {
           <ListItem disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                <BuildIcon sx={{ fontSize: 20 }} />
+                <FolderOpenIcon />
               </ListItemIcon>
               Change Home Directory
             </ListItemButton>
           </ListItem>
         </Link>
+
+        <Divider sx={{ mt: 1, mb: 1 }} />
 
         <Link to="mail-config" className={classes.link}>
           <ListItem disablePadding>

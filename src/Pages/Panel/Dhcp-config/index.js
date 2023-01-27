@@ -108,10 +108,10 @@ function Dhcpconfig() {
         <button className={classes.container__button} onClick={getStatus}>
           Status
         </button>
-        <div>
-          {/* {status.map((item) => { */}
-          <p>{status}</p>
-          {/* })} */}
+        <div className={classes.containercode}>
+          <code className={classes.containercode__codeBox}>
+            <div className={classes.status}>{status}</div>
+          </code>
         </div>
       </div>
     </div>

@@ -21,7 +21,7 @@ import { UserContext } from "../../store/UserContext";
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-const drawerWidth = 260;
+const drawerWidth = 280;
 function Dhcpsidebar() {
   const navigate = useNavigate();
   const context = useContext(UserContext);

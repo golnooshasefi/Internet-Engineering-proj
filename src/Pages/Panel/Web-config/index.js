@@ -92,8 +92,10 @@ function Webconfig() {
         <button className={classes.container__button} onClick={getStatus}>
           Status
         </button>
-        <div>
-          <p>{status}</p>
+        <div className={classes.containercode}>
+          <code className={classes.containercode__codeBox}>
+            <div className={classes.status}>{status}</div>
+          </code>
         </div>
       </div>
     </div>

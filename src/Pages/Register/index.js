@@ -66,11 +66,12 @@ function Register(props) {
         password: formData.password,
       })
       .then((res) => {
+        console.log(res)
         if (res.status === 200) {
           login(res.data.type, res.data.username);
           localStorage.setItem("access_token", res.data.access);
           localStorage.setItem("refresh_token", res.data.refresh);
-          axiosInstance.defaults.headers["Authorization"] =
+          axiosInstance.defaults.headers.common["Authorization"] =
             "Bearer " + localStorage.getItem("access_token");
           navigate("/panel");
         }

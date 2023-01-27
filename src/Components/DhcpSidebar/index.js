@@ -22,6 +22,7 @@ import classes from "../Shared/Sidebar.module.scss";
 import { UserContext } from "../../store/UserContext";
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import axiosInstance from "../../axios";
 
 const drawerWidth = 280;
 function Dhcpsidebar() {
@@ -30,7 +31,11 @@ function Dhcpsidebar() {
   const { user, logout } = context;
 
   function logouthandler() {
+    console.log("before logout")
+    console.log(axiosInstance.defaults.headers.common["Authorization"])
     logout();
+    console.log("after logout")
+    console.log(axiosInstance.defaults.headers.common["Authorization"])
     navigate("/");
   }
 

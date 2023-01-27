@@ -47,6 +47,8 @@ function Login(props) {
 
   const handleSumbit = (e) => {
     e.preventDefault();
+    console.log("before register")
+    console.log(axiosInstance.defaults.headers.common["Authorization"])
     // send `pass` and `username` to backend
     axiosInstance
       .post(`accounts/login/`, {
@@ -58,15 +60,18 @@ function Login(props) {
           login(res.data.type, res.data.username);
           localStorage.setItem("access_token", res.data.access);
           localStorage.setItem("refresh_token", res.data.refresh);
-          axiosInstance.defaults.headers["Authorization"] =
+          axiosInstance.defaults.headers.common["Authorization"] =
             "Bearer " + localStorage.getItem("access_token");
+          console.log("after register")
+          console.log(axiosInstance.defaults.headers.common["Authorization"])
           navigate("/panel");
         }
       })
       .catch((error) => {
         console.log("you are in catch");
-        console.log(error.status);
-        if (error.status === 401) {
+        console.log(error.response.status)
+        console.log(error.response.status);
+        if (error.response.status === 401) {
           console.log("in if. status 401");
           // console.log()
           setHasLoginError(true);

@@ -31,11 +31,11 @@ function Dhcpsidebar() {
   const { user, logout } = context;
 
   function logouthandler() {
-    console.log("before logout")
-    console.log(axiosInstance.defaults.headers.common["Authorization"])
+    console.log("before logout");
+    console.log(axiosInstance.defaults.headers.common["Authorization"]);
     logout();
-    console.log("after logout")
-    console.log(axiosInstance.defaults.headers.common["Authorization"])
+    console.log("after logout");
+    console.log(axiosInstance.defaults.headers.common["Authorization"]);
     navigate("/");
   }
 
@@ -106,15 +106,16 @@ function Dhcpsidebar() {
             </ListItemButton>
           </ListItem>
         </Link>
-
-        <ListItem disablePadding>
-          <ListItemButton>
-            <ListItemIcon>
-              <MarkEmailReadIcon />
-            </ListItemIcon>
-            Create your email account
-          </ListItemButton>
-        </ListItem>
+        <Link to="create-email" className={classes.link}>
+          <ListItem disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                <MarkEmailReadIcon />
+              </ListItemIcon>
+              Create your email account
+            </ListItemButton>
+          </ListItem>
+        </Link>
 
         <ListItem disablePadding>
           <ListItemButton onClickCapture={logouthandler}>

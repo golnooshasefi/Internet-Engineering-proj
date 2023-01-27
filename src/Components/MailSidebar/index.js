@@ -91,15 +91,16 @@ function Mailsidebar() {
             </ListItemButton>
           </ListItem>
         </Link>
-
-        <ListItem disablePadding>
-          <ListItemButton>
-            <ListItemIcon>
-              <MarkEmailReadIcon />
-            </ListItemIcon>
-            Create your email account
-          </ListItemButton>
-        </ListItem>
+        <Link to="create-email" className={classes.link}>
+          <ListItem disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                <MarkEmailReadIcon />
+              </ListItemIcon>
+              Create your email account
+            </ListItemButton>
+          </ListItem>
+        </Link>
 
         <ListItem disablePadding>
           <ListItemButton onClickCapture={logouthandler}>

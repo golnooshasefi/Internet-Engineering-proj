@@ -9,7 +9,7 @@ import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
-
+import MarkEmailReadIcon from "@mui/icons-material/MarkEmailRead";
 import DnsIcon from "@mui/icons-material/Dns";
 import SettingsIcon from "@mui/icons-material/Settings";
 import LogoutIcon from "@mui/icons-material/Logout";
@@ -101,6 +101,15 @@ function Websidebar() {
             </ListItemButton>
           </ListItem>
         </Link>
+
+        <ListItem disablePadding>
+          <ListItemButton>
+            <ListItemIcon>
+              <MarkEmailReadIcon />
+            </ListItemIcon>
+            Create your email account
+          </ListItemButton>
+        </ListItem>
 
         <ListItem disablePadding>
           <ListItemButton onClickCapture={logouthandler}>

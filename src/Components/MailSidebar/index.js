@@ -13,6 +13,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import MailIcon from "@mui/icons-material/Mail";
 import DnsIcon from "@mui/icons-material/Dns";
 import LogoutIcon from "@mui/icons-material/Logout";
+import MarkEmailReadIcon from "@mui/icons-material/MarkEmailRead";
 
 import { AppBar, Avatar, Typography } from "@mui/material";
 import { teal } from "@mui/material/colors";
@@ -90,6 +91,15 @@ function Mailsidebar() {
             </ListItemButton>
           </ListItem>
         </Link>
+
+        <ListItem disablePadding>
+          <ListItemButton>
+            <ListItemIcon>
+              <MarkEmailReadIcon />
+            </ListItemIcon>
+            Create your email account
+          </ListItemButton>
+        </ListItem>
 
         <ListItem disablePadding>
           <ListItemButton onClickCapture={logouthandler}>

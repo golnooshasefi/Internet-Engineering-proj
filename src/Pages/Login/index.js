@@ -64,8 +64,13 @@ function Login(props) {
         }
       })
       .catch((error) => {
+        console.log("you are in catch");
+        console.log(error.status);
         if (error.status === 401) {
+          console.log("in if. status 401");
+          // console.log()
           setHasLoginError(true);
+          console.log("hasloginerror after set" + hasLoginError);
         }
       });
   };

@@ -67,7 +67,7 @@ function Mailconfig() {
     setStatus(null);
     axiosInstance.get(`/accounts/mail/status`).then((res) => {
       if (res.status === 200) {
-        setStatus(res.data);
+        setStatus(res);
       }
     });
   };

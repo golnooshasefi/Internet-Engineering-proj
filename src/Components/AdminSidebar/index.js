@@ -13,6 +13,7 @@ import MailIcon from "@mui/icons-material/Mail";
 import DnsIcon from "@mui/icons-material/Dns";
 import SettingsIcon from "@mui/icons-material/Settings";
 import LogoutIcon from "@mui/icons-material/Logout";
+import MarkEmailReadIcon from "@mui/icons-material/MarkEmailRead";
 
 import BuildIcon from "@mui/icons-material/Build";
 import { Avatar, Typography } from "@mui/material";
@@ -138,6 +139,15 @@ function Adminsidebar() {
             </ListItemButton>
           </ListItem>
         </Link>
+
+        <ListItem disablePadding>
+          <ListItemButton>
+            <ListItemIcon>
+              <MarkEmailReadIcon />
+            </ListItemIcon>
+            Create your email account
+          </ListItemButton>
+        </ListItem>
 
         <ListItem disablePadding>
           <ListItemButton onClickCapture={logouthandler}>

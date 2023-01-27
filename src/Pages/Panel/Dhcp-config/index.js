@@ -65,7 +65,7 @@ function Dhcpconfig() {
     setStatus(null);
     axiosInstance.get(`/accounts/dhcp/status`).then((res) => {
       if (res.status === 200) {
-        setStatus(res.data);
+        setStatus(res);
       }
     });
   };

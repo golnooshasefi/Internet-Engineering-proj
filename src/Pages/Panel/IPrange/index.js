@@ -48,8 +48,8 @@ function Iprange() {
         }
       })
       .catch((err) => {
-        if (err.status === 400) {
-          setResponse(err.data.change_range);
+        if (err.response.status === 400) {
+          setResponse(err.response.data.change_range);
         } else {
           setResponse("An error occurred.");
         }

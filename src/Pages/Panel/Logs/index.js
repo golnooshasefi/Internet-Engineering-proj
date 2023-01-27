@@ -29,7 +29,7 @@ function Logs() {
         <div className={classes.container__showlog}>
           <code className={classes.container__codeBox}>
             {logs.map((log) => (
-              <div className={classes.log}>{JSON.stringify(log)}</div>
+              <div className={classes.log}>{JSON.stringify(log, null, 2)}</div>
             ))}
           </code>
         </div>

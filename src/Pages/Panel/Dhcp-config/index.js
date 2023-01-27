@@ -110,7 +110,9 @@ function Dhcpconfig() {
         </button>
         <div className={classes.containercode}>
           <code className={classes.containercode__codeBox}>
-            <div className={classes.status}>{status}</div>
+            <div className={classes.status}>
+              {JSON.stringify(status, null, 2)}
+            </div>
           </code>
         </div>
       </div>

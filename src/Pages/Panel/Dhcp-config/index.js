@@ -10,7 +10,7 @@ function Dhcpconfig() {
   const { user } = context;
   const navigate = useNavigate();
 
-  if (user.type !== "dhcp") {
+  if (user.type !== "dhcp" && user.type !== "admin") {
     navigate("/panel");
   }
   const [startSuccessMeassage, setStartSuccessMessage] = useState("");
@@ -19,7 +19,7 @@ function Dhcpconfig() {
   const [stopSuccessMeassage, setStopSuccessMessage] = useState("");
   const [stopFailureMessage, setStopFailureMessage] = useState("");
 
-  const [status, setStatus] = useState([]);
+  const [status, setStatus] = useState(null);
 
   const handleStart = (e) => {
     e.preventDefault();
@@ -62,6 +62,7 @@ function Dhcpconfig() {
   };
 
   const getStatus = () => {
+    setStatus(null);
     axiosInstance.get(`/accounts/dhcp/status`).then((res) => {
       if (res.status === 200) {
         setStatus(res.data);
@@ -108,6 +109,8 @@ function Dhcpconfig() {
         <button className={classes.container__button} onClick={getStatus}>
           Status
         </button>
+      </div>
+      {status && (
         <div className={classes.containercode}>
           <code className={classes.containercode__codeBox}>
             <div className={classes.status}>
@@ -115,7 +118,7 @@ function Dhcpconfig() {
             </div>
           </code>
         </div>
-      </div>
+      )}
     </div>
   );
 }

@@ -11,7 +11,7 @@ function Webconfig() {
   const { user } = context;
   const navigate = useNavigate();
 
-  if (user.type !== "web") {
+  if (user.type !== "web" && user.type !== "admin") {
     navigate("/panel");
   }
   const [startSuccessMeassage, setStartSuccessMessage] = useState("");
@@ -20,7 +20,7 @@ function Webconfig() {
   const [stopSuccessMeassage, setStopSuccessMessage] = useState("");
   const [stopFailureMessage, setStopFailureMessage] = useState("");
 
-  const [status, setStatus] = useState([]);
+  const [status, setStatus] = useState(null);
 
   const handleStart = (e) => {
     e.preventDefault();
@@ -55,6 +55,7 @@ function Webconfig() {
   };
 
   const getStatus = () => {
+    setStatus(null);
     axiosInstance.get(`accounts/web/status/`).then((res) => {
       if (res.status === 200) {
         setStatus(res);
@@ -72,17 +73,26 @@ function Webconfig() {
           Start
         </button>
         {startSuccessMeassage && (
-          <div> Your Web Server started succesfully!</div>
+          <div className={classes.message}>
+            {" "}
+            Your Web Server started succesfully!
+          </div>
         )}
-        {startFailureMessage && <div>An Error Occured!</div>}
+        {startFailureMessage && (
+          <div className={classes.error__message}>An Error Occured!</div>
+        )}
       </div>
       <div className={classes.container__stop}>
         <span>You can click on this button to stop your Web Server</span>
         <button className={classes.container__button} onClick={handleStop}>
           Stop
         </button>
-        {stopSuccessMeassage && <div> Your Web Server Stoped</div>}
-        {stopFailureMessage && <div>An Error Occured!</div>}
+        {stopSuccessMeassage && (
+          <div className={classes.message}> Your Web Server Stoped</div>
+        )}
+        {stopFailureMessage && (
+          <div className={classes.error__message}>An Error Occured!</div>
+        )}
       </div>
       <div className={classes.container__status}>
         <span>
@@ -92,6 +102,8 @@ function Webconfig() {
         <button className={classes.container__button} onClick={getStatus}>
           Status
         </button>
+      </div>
+      {status && (
         <div className={classes.containercode}>
           <code className={classes.containercode__codeBox}>
             <div className={classes.status}>
@@ -99,7 +111,7 @@ function Webconfig() {
             </div>
           </code>
         </div>
-      </div>
+      )}
     </div>
   );
 }

@@ -66,3 +66,13 @@
 .link__button {
   padding: 1rem;
 }
+
+.errorcontainer {
+  padding: 0.8rem;
+  background-color: #ffcbd1;
+  text-align: center;
+  border-radius: 1rem;
+  &__message {
+    color: #ff2c2c;
+  }
+}

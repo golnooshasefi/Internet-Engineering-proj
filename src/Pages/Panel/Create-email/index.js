@@ -31,6 +31,8 @@ function CreateEmail() {
     confpassword: "",
   });
   const [correctPass, setCorrectPass] = useState(true);
+  const [createSuccessfull, setCreateSuccessfull] = useState(false);
+  const [createError, setCreateError] = useState(false);
 
   const handleChange = (e) => {
     updateFormData({
@@ -42,29 +44,28 @@ function CreateEmail() {
 
   const handleSumbit = (e) => {
     e.preventDefault();
+    setCreateSuccessfull(false);
+    setCreateError(false);
+    setCorrectPass(true);
     console.log(formData.password, formData.confpassword);
     console.log("before check " + correctPass);
     if (formData.password === formData.confpassword) {
       setCorrectPass(true);
       console.log("after" + correctPass);
       axiosInstance
-        .post(``, {
+        .post(`accounts/mail/addUser`, {
           username: formData.username,
           password: formData.password,
         })
         .then((res) => {
-          // if (res.status === 200) {
-          //   login(res.data.type, res.data.username);
-          //   localStorage.setItem("access_token", res.data.access);
-          //   localStorage.setItem("refresh_token", res.data.refresh);
-          //   axiosInstance.defaults.headers["Authorization"] =
-          //     "Bearer " + localStorage.getItem("access_token");
-          //   navigate("/panel");
-          // }
+          if (res.status === 200) {
+            setCreateSuccessfull(true);
+          }
+        })
+        .catch((error) => {
+          setCreateError(true);
         });
     } else {
-      console.log("should be here");
-      console.log(correctPass);
       setCorrectPass(false);
     }
   };
@@ -166,7 +167,21 @@ function CreateEmail() {
         {!correctPass && (
           <div className={classes.errorcontainer}>
             <div className={classes.errorcontainer__message}>
-              Your password is wrong. Try again!
+              Confirm password doesn't match with password.
+            </div>
+          </div>
+        )}
+        {createSuccessfull && (
+          <div className={classes.messagecontainer}>
+            <div className={classes.messagecontainer__success}>
+              Your email account created succesfully!
+            </div>
+          </div>
+        )}
+        {createError && (
+          <div className={classes.errorcontainer}>
+            <div className={classes.errorcontainer__message}>
+              An error occured. Please try again.
             </div>
           </div>
         )}

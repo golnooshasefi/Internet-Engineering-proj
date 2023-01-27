@@ -65,6 +65,7 @@ function UserContextProvider({ children }) {
     localStorage.removeItem("access_token");
     localStorage.removeItem("refresh_token");
     localStorage.removeItem("userInformation");
+    axiosInstance.defaults.headers.common["Authorization"] = "";
     setUser({
       type: "",
       username: "",

@@ -35,7 +35,7 @@ function Webchangedir() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axiosInstance.post(`//`, {
+        axiosInstance.post(`/ConfigChangeHomeDir/`, {
           newDirectory: formData.newDirectory,
         }).then((res) => {
           if (res.status === 200) {

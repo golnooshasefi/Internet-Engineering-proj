@@ -61,7 +61,7 @@ function Webchangedir() {
             <form className={classes.form} onSubmit={handleSubmit}>
               <div>
                 <span>
-                  /var/wwww/
+                  /var/www/
                   <TextField
                     sx={{
                       width: { sm: 400 },

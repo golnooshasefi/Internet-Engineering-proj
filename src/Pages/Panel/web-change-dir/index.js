@@ -20,7 +20,7 @@ function Webchangedir() {
     };
 
     useEffect(() => {
-      axiosInstance.get(`/ConfigGetHomeDir/`).then((res) => {
+      axiosInstance.get(`/Accounts/ConfigGetHomeDir/`).then((res) => {
         if(res.status === 200) {
           setCurrentDirectory(res.data.HomeDir) 
         }
@@ -35,7 +35,7 @@ function Webchangedir() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axiosInstance.post(`/ConfigChangeHomeDir/`, {
+        axiosInstance.post(`/َAccounts/ConfigChangeHomeDir/`, {
           newDirectory: formData.newDirectory,
         }).then((res) => {
           if (res.status === 200) {

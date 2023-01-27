@@ -13,6 +13,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import DnsIcon from "@mui/icons-material/Dns";
 import SettingsIcon from "@mui/icons-material/Settings";
 import LogoutIcon from "@mui/icons-material/Logout";
+import FolderOpenIcon from "@mui/icons-material/FolderOpen";
 import BuildIcon from "@mui/icons-material/Build";
 import { Avatar, Typography } from "@mui/material";
 import { teal } from "@mui/material/colors";
@@ -22,7 +23,7 @@ import { UserContext } from "../../store/UserContext";
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-const drawerWidth = 260;
+const drawerWidth = 280;
 function Websidebar() {
   const context = useContext(UserContext);
   const { user, logout } = context;
@@ -94,7 +95,7 @@ function Websidebar() {
           <ListItem disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                <BuildIcon sx={{ fontSize: 20 }} />
+                <FolderOpenIcon />
               </ListItemIcon>
               Change Home Directory
             </ListItemButton>

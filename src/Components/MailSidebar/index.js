@@ -22,7 +22,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../../store/UserContext";
 
-const drawerWidth = 260;
+const drawerWidth = 280;
 function Mailsidebar() {
   const context = useContext(UserContext);
   const { user, logout } = context;

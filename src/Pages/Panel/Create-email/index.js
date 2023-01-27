@@ -166,7 +166,7 @@ function CreateEmail() {
         {!correctPass && (
           <div className={classes.errorcontainer}>
             <div className={classes.errorcontainer__message}>
-              Your password is wrong
+              Your password is wrong. Try again!
             </div>
           </div>
         )}

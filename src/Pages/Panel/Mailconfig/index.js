@@ -1,13 +1,19 @@
 import axiosInstance from "../../../axios";
-import classes from "./Mailconfig.module.scss";
-import UserContext from "../../../store/UserContext";
+import classes from "../Configs.module.scss";
+import { UserContext } from "../../../store/UserContext";
 import { useContext, useState } from "react";
 // import { useNavigate } from "react-router-dom";
 import { Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 function Mailconfig() {
-  // const { login } = useContext(UserContext);
-  // const navigate = useNavigate();
+  const context = useContext(UserContext);
+  const { user } = context;
+  const navigate = useNavigate();
+
+  if (user.type !== "mail") {
+    navigate("/panel");
+  }
 
   const [startSuccessMeassage, setStartSuccessMessage] = useState("");
   const [startFailureMessage, setStartFailureMessage] = useState("");
@@ -17,39 +23,57 @@ function Mailconfig() {
 
   const [status, setStatus] = useState([]);
 
-  const handlestop = (e) => {
-    e.preventDefault();
-    axiosInstance.post(`/accounts/mail/stop`).then((res) => {
-      if (res.status === 200) {
-        setStopSuccessMessage("succesful");
-      } else {
-        setStopFailureMessage("error");
-      }
-    });
-  };
-
   const handlestart = (e) => {
     e.preventDefault();
-    axiosInstance.post(`/accounts/mail/start`).then((res) => {
-      if (res.status === 200) {
-        setStartSuccessMessage("succesful");
-      } else {
+    axiosInstance
+      .get(`/accounts/mail/start`)
+      .then((res) => {
+        if (res.status === 200) {
+          if (res.data.startError === "") {
+            setStartSuccessMessage(res.data.startOutput);
+          } else {
+            setStartFailureMessage("error");
+          }
+        } else {
+          setStartFailureMessage("error");
+        }
+      })
+      .catch(() => {
         setStartFailureMessage("error");
-      }
-    });
+      });
+  };
+
+  const handlestop = (e) => {
+    e.preventDefault();
+    axiosInstance
+      .get(`/accounts/mail/stop`)
+      .then((res) => {
+        if (res.status === 200) {
+          if (res.data.stopError === "") {
+            setStopSuccessMessage(res.data.stopOutput);
+          } else {
+            setStopFailureMessage("error");
+          }
+        } else {
+          setStopFailureMessage("error");
+        }
+      })
+      .catch(() => {
+        setStopFailureMessage("error");
+      });
   };
 
   const getStatus = () => {
     axiosInstance.get(`/accounts/mail/status`).then((res) => {
       if (res.status === 200) {
-        setStatus(res);
+        setStatus(res.data);
       }
     });
   };
 
   return (
     <div className={classes.container}>
-      <Typography variant="h6" noWrap component="div">
+      <Typography variant="h4" noWrap component="div">
         Mail Config
       </Typography>
       <div className={classes.container__start}>
@@ -79,10 +103,10 @@ function Mailconfig() {
         <button className={classes.container__button} onClick={getStatus}>
           Status
         </button>
-        <div>
-          {status.map((item) => {
-            return <p>{item.status}</p>;
-          })}
+        <div className={classes.containercode}>
+          <code className={classes.containercode__codeBox}>
+            <div className={classes.status}>{status}</div>
+          </code>
         </div>
       </div>
     </div>

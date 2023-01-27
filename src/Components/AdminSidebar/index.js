@@ -8,10 +8,12 @@ import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
-
+import FolderOpenIcon from "@mui/icons-material/FolderOpen";
 import MailIcon from "@mui/icons-material/Mail";
 import DnsIcon from "@mui/icons-material/Dns";
 import SettingsIcon from "@mui/icons-material/Settings";
+import LogoutIcon from "@mui/icons-material/Logout";
+
 import BuildIcon from "@mui/icons-material/Build";
 import { Avatar, Typography } from "@mui/material";
 import { teal } from "@mui/material/colors";
@@ -19,12 +21,18 @@ import { teal } from "@mui/material/colors";
 import classes from "../Shared/Sidebar.module.scss";
 import { UserContext } from "../../store/UserContext";
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-const drawerWidth = 260;
+const drawerWidth = 280;
 function Adminsidebar() {
   const context = useContext(UserContext);
-  const { user } = context;
+  const { user, logout } = context;
+  const navigate = useNavigate();
+
+  function logouthandler() {
+    logout();
+    navigate("/");
+  }
 
   return (
     <Drawer
@@ -52,7 +60,7 @@ function Adminsidebar() {
               sx={{ bgcolor: teal[500] }}
               className={classes.container__form_Avatar}
             ></Avatar>
-            {/* <div className={classes["user-info__title"]}>{user.username}</div> */}
+
             <div className={classes["user-info__title"]}>{user.username}</div>
           </div>
         </div>
@@ -62,7 +70,6 @@ function Adminsidebar() {
 
       <Divider />
       <List>
-        {/* {["All mail", "Trash", "Spam"].map((text, index) => ( */}
         <Link to="logs" className={classes.link}>
           <ListItem disablePadding>
             <ListItemButton>
@@ -96,6 +103,7 @@ function Adminsidebar() {
           </ListItem>
         </Link>
 
+        <Divider sx={{ mt: 1, mb: 1 }} />
         <Link to="web-config" className={classes.link}>
           <ListItem disablePadding>
             <ListItemButton>
@@ -111,12 +119,14 @@ function Adminsidebar() {
           <ListItem disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                <BuildIcon sx={{ fontSize: 20 }} />
+                <FolderOpenIcon />
               </ListItemIcon>
               Change Home Directory
             </ListItemButton>
           </ListItem>
         </Link>
+
+        <Divider sx={{ mt: 1, mb: 1 }} />
 
         <Link to="mail-config" className={classes.link}>
           <ListItem disablePadding>
@@ -128,10 +138,17 @@ function Adminsidebar() {
             </ListItemButton>
           </ListItem>
         </Link>
-        {/* ))} */}
+
+        <ListItem disablePadding>
+          <ListItemButton onClickCapture={logouthandler}>
+            <ListItemIcon>
+              <LogoutIcon />
+            </ListItemIcon>
+            Logout
+          </ListItemButton>
+        </ListItem>
       </List>
     </Drawer>
-    // </Box>
   );
 }
 

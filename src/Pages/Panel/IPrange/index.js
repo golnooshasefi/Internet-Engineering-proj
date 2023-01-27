@@ -3,13 +3,24 @@ import { TextField, Toolbar, Typography } from "@mui/material";
 import classes from "./Iprange.module.scss";
 
 import axiosInstance from "../../../axios";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { UserContext } from "../../../store/UserContext";
 function Iprange() {
   // const [startip, setStartip] = useState("");
   // const [endip, setEndip] = useState("");
   // const [emptyStartIp, setEmptyStartIp] = useState(false);
   // const [emptyEndIp, setEmptyEndIp] = useState(false);
   const [response, setResponse] = useState(false);
+
+  const context = useContext(UserContext);
+  const { user } = context;
+  const navigate = useNavigate();
+
+  // if (user.type !== "dhcp") {
+  //   navigate("/panel");
+  // }
+  const [success, setSuccess] = useState(false);
   const [formData, updateFormData] = useState({
     startip: "",
     endip: "",
@@ -26,7 +37,8 @@ function Iprange() {
     setResponse(false);
     e.preventDefault();
     axiosInstance
-      .post(`/dhcp/changeIpRange/`, {
+
+      .post(`/accounts/dhcp/changeIpRange/`, {
         startip: formData.startip,
         endip: formData.endip,
       })
@@ -60,7 +72,7 @@ function Iprange() {
         <form className={classes.form} onSubmit={handleSubmit}>
           <div>
             <span className={classes.start}>
-              from 192.168.100.
+              from 192.168.10.
               <TextField
                 sx={{
                   width: { sm: 60 },
@@ -78,11 +90,11 @@ function Iprange() {
                   if (!/[0-9]/.test(event.key)) {
                     event.preventDefault();
                   }
-                }}  
+                }}
               />
             </span>
             <span>
-              to 192.168.100.
+              to 192.168.10.
               <TextField
                 sx={{
                   width: { sm: 60 },

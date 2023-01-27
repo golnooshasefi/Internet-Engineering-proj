@@ -101,7 +101,7 @@ function Websidebar() {
             </ListItemButton>
           </ListItem>
         </Link>
-
+        <Link to="create-email">
         <ListItem disablePadding>
           <ListItemButton>
             <ListItemIcon>
@@ -110,7 +110,8 @@ function Websidebar() {
             Create your email account
           </ListItemButton>
         </ListItem>
-
+        </Link>
+      
         <ListItem disablePadding>
           <ListItemButton onClickCapture={logouthandler}>
             <ListItemIcon>

@@ -43,12 +43,20 @@ function Iprange() {
         endip: formData.endip,
       })
       .then((res) => {
-        if (res.status === 200) {
+        if(res.status === 200){
           setResponse(res.data.change_range);
-        } else {
+        }
+      })
+      .catch((err) => {
+        if(err.status === 406) {
+          setResponse(err.data.change_range);
+        }
+        else {
           setResponse("An error occurred.");
         }
-      });
+      }
+
+      );
   };
 
   return (
@@ -107,10 +115,7 @@ function Iprange() {
                 }}
               />
             </span>
-            <div className={classes.status}>
-              {response && <span>Your mail status is: </span>}
-              {response}
-            </div>
+            <div className={classes.status}>{response && <span>Your mail status is: {response}</span>}</div>
           </div>
           <input type="submit" value="Submit" className={classes.submitbtn} />
         </form>

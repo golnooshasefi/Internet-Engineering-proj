@@ -11,9 +11,9 @@ function Webconfig() {
   const { user } = context;
   const navigate = useNavigate();
 
-  if (user.type !== "web" && user.type !== "admin") {
-    navigate("/panel");
-  }
+  // if (user.type !== "web" && user.type !== "admin") {
+  //   navigate("/panel");
+  // }
   const [startSuccessMeassage, setStartSuccessMessage] = useState("");
   const [startFailureMessage, setStartFailureMessage] = useState("");
 
@@ -58,7 +58,7 @@ function Webconfig() {
     setStatus(null);
     axiosInstance.get(`accounts/web/status/`).then((res) => {
       if (res.status === 200) {
-        setStatus(res);
+        setStatus(res.data);
       }
     });
   };

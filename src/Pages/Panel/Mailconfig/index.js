@@ -11,9 +11,9 @@ function Mailconfig() {
   const { user } = context;
   const navigate = useNavigate();
 
-  if (user.type !== "mail" && user.type !== "admin") {
-    navigate("/panel");
-  }
+  // if (user.type !== "mail" && user.type !== "admin") {
+  //   navigate("/panel");
+  // }
 
   const [startSuccessMeassage, setStartSuccessMessage] = useState("");
   const [startFailureMessage, setStartFailureMessage] = useState("");
@@ -67,7 +67,7 @@ function Mailconfig() {
     setStatus(null);
     axiosInstance.get(`/accounts/mail/status`).then((res) => {
       if (res.status === 200) {
-        setStatus(res);
+        setStatus(res.data);
       }
     });
   };
@@ -83,9 +83,14 @@ function Mailconfig() {
           Start
         </button>
         {startSuccessMeassage && (
-          <div> Your Mail Server started succesfully!</div>
+          <div className={classes.message}>
+            {" "}
+            Your Mail Server started succesfully!
+          </div>
         )}
-        {startFailureMessage && <div>An Error Occured!</div>}
+        {startFailureMessage && (
+          <div className={classes.error__message}>An Error Occured!</div>
+        )}
       </div>
 
       <div className={classes.container__stop}>

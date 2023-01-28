@@ -10,9 +10,9 @@ function Dhcpconfig() {
   const { user } = context;
   const navigate = useNavigate();
 
-  if (user.type !== "dhcp" && user.type !== "admin") {
-    navigate("/panel");
-  }
+  // if (user.type !== "dhcp" && user.type !== "admin") {
+  //   navigate("/panel");
+  // }
   const [startSuccessMeassage, setStartSuccessMessage] = useState("");
   const [startFailureMessage, setStartFailureMessage] = useState("");
 
@@ -65,7 +65,7 @@ function Dhcpconfig() {
     setStatus(null);
     axiosInstance.get(`/accounts/dhcp/status`).then((res) => {
       if (res.status === 200) {
-        setStatus(res);
+        setStatus(res.data);
       }
     });
   };

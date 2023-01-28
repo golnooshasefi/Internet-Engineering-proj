@@ -44,6 +44,7 @@ function CreateEmail() {
 
   const handleSumbit = (e) => {
     e.preventDefault();
+
     setCreateSuccessfull(false);
     setCreateError(false);
     setCorrectPass(true);
@@ -53,7 +54,7 @@ function CreateEmail() {
       setCorrectPass(true);
       console.log("after" + correctPass);
       axiosInstance
-        .post(`accounts/mail/addUser`, {
+        .post(`accounts/mail/addUser/`, {
           username: formData.username,
           password: formData.password,
         })
